@@ -323,35 +323,21 @@ See [docs/DATASETS.md](docs/DATASETS.md) for the full schema of each file.
 
 ---
 
-## Deployment
+## Running it elsewhere
 
-Full guide: **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**.
-
-The short version: **Netlify cannot host the backend** — it has no Python
-runtime, and this API needs spaCy, scikit-learn and PyMuPDF. Two options:
-
-**Single host (simplest).** The included `Dockerfile` serves the dashboard, the
-API and the docs from one origin. No CORS, no API URL to configure.
+`python run.py` serves the dashboard, the API and the docs from one process, so
+anything that can run Python can host it:
 
 ```bash
-docker build -t resume-intelligence .
-docker run --rm -p 8000:8000 resume-intelligence
+pip install -r backend/requirements.txt
+python -m spacy download en_core_web_sm
+DEBUG=false HOST=0.0.0.0 PORT=8000 python -m uvicorn main:app --app-dir backend
 ```
 
-Deploy that image to Render (`render.yaml` blueprint included), Railway, Fly or
-Cloud Run.
-
-**Split (Netlify frontend + hosted API).** Deploy the API as above, then point
-Netlify at the repo — `netlify.toml` handles the rest. Set one environment
-variable in Netlify:
-
-```
-API_BASE = https://your-api.onrender.com
-```
-
-The build bakes that into `frontend/config.js`. If it is missing, the site shows
-a "Connect to your API" panel instead of failing silently. Then lock down CORS
-on the backend with `CORS_ORIGINS=https://your-site.netlify.app`.
+Set `DEBUG=false` (the default) so exception detail is never returned in
+responses, and `CORS_ORIGINS` to your frontend origin if you host the two halves
+separately. Allow ~400 MB of RAM per worker — each one loads its own copy of the
+spaCy model and scikit-learn.
 
 ## Configuration
 
