@@ -1,0 +1,464 @@
+/* ==========================================================================
+   Resume Intelligence — Design System
+   Tokens, primitives and layout. Page-specific rules live in dashboard.css.
+   ========================================================================== */
+
+/* Light ("bright") is the default; the dark palette is opt-in via
+   data-theme="dark" on <html>. Only these tokens differ between the two -
+   every rule below consumes them, so no component knows which theme is live. */
+:root {
+  color-scheme: light;
+
+  /* Surface */
+  --bg: #f3f5fb;
+  --bg-grad-1: rgba(99, 102, 241, 0.16);
+  --bg-grad-2: rgba(14, 165, 233, 0.14);
+  --bg-grad-3: rgba(168, 85, 247, 0.10);
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --surface-3: #eef1f8;
+  --card-a: rgba(255, 255, 255, 0.96);
+  --card-b: rgba(255, 255, 255, 0.72);
+  --sidebar-a: rgba(255, 255, 255, 0.86);
+  --sidebar-b: rgba(255, 255, 255, 0.58);
+  --topbar-bg: rgba(243, 245, 251, 0.78);
+  --panel-bg: rgba(255, 255, 255, 0.97);
+  --border: rgba(15, 23, 42, 0.10);
+  --border-strong: rgba(15, 23, 42, 0.17);
+
+  /* Fills layered on the surface */
+  --raised: rgba(15, 23, 42, 0.028);
+  --raised-2: rgba(15, 23, 42, 0.05);
+  --raised-3: rgba(15, 23, 42, 0.08);
+  --sunken: rgba(15, 23, 42, 0.045);
+  --sunken-2: rgba(15, 23, 42, 0.06);
+  --track: rgba(15, 23, 42, 0.10);
+  --tick: rgba(15, 23, 42, 0.24);
+  --scrollbar: rgba(15, 23, 42, 0.18);
+  --scrollbar-hover: rgba(15, 23, 42, 0.32);
+
+  /* Text */
+  --text: #0f172a;
+  --text-dim: #4b5772;
+  --text-faint: #55637c;
+  --on-accent: #ffffff;
+  --nav-active-text: #3730a3;
+  --on-accent-solid: #ffffff;
+
+  /* Brand + semantics. *-text variants carry the contrast-safe foreground. */
+  --accent: #4f46e5;
+  --accent-alt: #7c3aed;
+  --accent-2: #0891b2;
+  --accent-soft: rgba(79, 70, 229, 0.10);
+  --accent-text: #3730a3;
+  --success: #16a34a;
+  --success-soft: rgba(22, 163, 74, 0.12);
+  --ok-text: #116b33;
+  --warn: #d97706;
+  --warn-soft: rgba(217, 119, 6, 0.14);
+  --warn-text: #95490a;
+  --danger: #e11d48;
+  --danger-soft: rgba(225, 29, 72, 0.10);
+  --bad-text: #b01236;
+  --neutral: #5a677d;
+  --emerging: #9333ea;
+  --after-text: #14532d;
+
+  /* Score ramp - read by scoreColor(). These double as text (the band label,
+     the readiness figures), so they are darkened to clear AA on light
+     surfaces rather than tuned only as chart fills. */
+  --score-excellent: #166534;
+  --score-strong: #137a3a;
+  --score-moderate: #a4530b;
+  --score-developing: #c2410c;
+  --score-early: #be123c;
+
+  /* Shape */
+  --r-sm: 8px;
+  --r: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --shadow: 0 12px 30px -20px rgba(15, 23, 42, 0.45);
+  --shadow-lg: 0 26px 60px -28px rgba(15, 23, 42, 0.45);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fast: 160ms var(--ease);
+  --slow: 420ms var(--ease);
+
+  --sidebar-w: 264px;
+  --max-w: 1360px;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #06080f;
+  --bg-grad-1: rgba(99, 102, 241, 0.16);
+  --bg-grad-2: rgba(34, 211, 238, 0.10);
+  --bg-grad-3: rgba(168, 85, 247, 0.09);
+  --surface: #0c1020;
+  --surface-2: #11162a;
+  --surface-3: #171d35;
+  --card-a: rgba(255, 255, 255, 0.045);
+  --card-b: rgba(255, 255, 255, 0.014);
+  --sidebar-a: rgba(12, 16, 32, 0.72);
+  --sidebar-b: rgba(6, 8, 15, 0.5);
+  --topbar-bg: rgba(6, 8, 15, 0.62);
+  --panel-bg: rgba(10, 13, 26, 0.97);
+  --border: rgba(255, 255, 255, 0.075);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  --raised: rgba(255, 255, 255, 0.026);
+  --raised-2: rgba(255, 255, 255, 0.045);
+  --raised-3: rgba(255, 255, 255, 0.09);
+  --sunken: rgba(0, 0, 0, 0.24);
+  --sunken-2: rgba(0, 0, 0, 0.3);
+  --track: rgba(255, 255, 255, 0.075);
+  --tick: rgba(255, 255, 255, 0.22);
+  --scrollbar: rgba(255, 255, 255, 0.10);
+  --scrollbar-hover: rgba(255, 255, 255, 0.20);
+
+  --text: #e9edf7;
+  --text-dim: #a3aec6;
+  --text-faint: #8891aa;
+  --on-accent: #05070e;
+  --nav-active-text: #ffffff;
+
+  --accent: #6366f1;
+  --accent-alt: #8b5cf6;
+  --accent-2: #22d3ee;
+  --accent-soft: rgba(99, 102, 241, 0.14);
+  --accent-text: #c7cbff;
+  --success: #22c55e;
+  --success-soft: rgba(34, 197, 94, 0.13);
+  --ok-text: #86efac;
+  --warn: #f59e0b;
+  --warn-soft: rgba(245, 158, 11, 0.13);
+  --warn-text: #fcd34d;
+  --danger: #f43f5e;
+  --danger-soft: rgba(244, 63, 94, 0.13);
+  --bad-text: #fda4b4;
+  --neutral: #64748b;
+  --emerging: #c084fc;
+  --after-text: #d9f7e6;
+
+  --score-excellent: #22c55e;
+  --score-strong: #4ade80;
+  --score-moderate: #f59e0b;
+  --score-developing: #fb923c;
+  --score-early: #f43f5e;
+
+  --shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.9);
+  --shadow-lg: 0 30px 70px -30px rgba(0, 0, 0, 0.95);
+}
+
+* { box-sizing: border-box; }
+
+/* Author `display` rules (.col, .row, .grid …) otherwise beat the UA sheet's
+   [hidden] rule, leaving "hidden" panels visible. */
+[hidden] { display: none !important; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  overflow: hidden; /* the .main column owns scrolling - see .app */
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ambient background wash */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1100px 600px at 12% -8%, var(--bg-grad-1), transparent 62%),
+    radial-gradient(900px 520px at 92% 4%, var(--bg-grad-2), transparent 58%),
+    radial-gradient(700px 700px at 60% 110%, var(--bg-grad-3), transparent 60%);
+}
+
+h1, h2, h3, h4 { margin: 0; font-weight: 620; letter-spacing: -0.021em; line-height: 1.22; }
+h1 { font-size: clamp(1.85rem, 3.4vw, 2.55rem); }
+h2 { font-size: 1.32rem; }
+h3 { font-size: 1.03rem; }
+h4 { font-size: 0.9rem; }
+p { margin: 0; }
+a { color: var(--accent-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+::selection { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 99px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-hover); background-clip: padding-box; }
+
+/* --------------------------------------------------------------- layout -- */
+
+/* App-shell scrolling: the main column scrolls, not the document. Keeps the
+   sidebar and topbar genuinely fixed and avoids the body/viewport height
+   mismatch that sticky-sidebar layouts run into. */
+.app {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: var(--sidebar-w);
+  flex: 0 0 var(--sidebar-w);
+  border-right: 1px solid var(--border);
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  overflow-y: auto;
+  background: linear-gradient(180deg, var(--sidebar-a), var(--sidebar-b));
+  backdrop-filter: blur(14px);
+}
+
+.brand { display: flex; align-items: center; gap: 11px; padding: 6px 10px 20px; }
+.brand-mark {
+  width: 36px; height: 36px; border-radius: 11px; flex: 0 0 36px;
+  background: linear-gradient(140deg, var(--accent), var(--accent-2));
+  display: grid; place-items: center; font-weight: 800; color: var(--on-accent); font-size: 15px;
+  box-shadow: 0 8px 22px -10px var(--accent);
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-text strong { font-size: 0.95rem; letter-spacing: -0.02em; }
+.brand-text span { font-size: 0.69rem; color: var(--text-faint); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.nav { display: flex; flex-direction: column; gap: 3px; }
+.nav-label {
+  font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--text-faint); padding: 14px 12px 6px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 9px 12px; border-radius: var(--r-sm);
+  color: var(--text-dim); font-size: 0.885rem; font-weight: 500;
+  cursor: pointer; border: 1px solid transparent;
+  transition: background var(--fast), color var(--fast), border-color var(--fast);
+  text-align: left; width: 100%; background: none; font-family: inherit;
+}
+.nav-item:hover:not(:disabled) { background: var(--raised-2); color: var(--text); }
+.nav-item.active { background: var(--accent-soft); color: var(--nav-active-text); border-color: color-mix(in srgb, var(--accent) 34%, transparent); }
+.nav-item:disabled { opacity: 0.34; cursor: not-allowed; }
+.nav-item .ico { width: 17px; height: 17px; flex: 0 0 17px; opacity: 0.9; }
+.nav-item .badge-dot { margin-left: auto; width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
+
+.sidebar-foot { margin-top: auto; padding: 12px; border-top: 1px solid var(--border); }
+
+.main { flex: 1; min-width: 0; display: flex; flex-direction: column; height: 100%; overflow-y: auto; }
+
+.topbar {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  padding: 15px 30px; border-bottom: 1px solid var(--border);
+  background: var(--topbar-bg); backdrop-filter: blur(14px);
+  position: sticky; top: 0; z-index: 30;
+}
+.topbar h2 { font-size: 1.05rem; }
+.topbar-meta { display: flex; align-items: center; gap: 8px; margin-left: auto; flex-wrap: wrap; }
+.theme-toggle {
+  width: 32px; height: 32px; padding: 0; flex: 0 0 32px;
+  border-radius: 9px; font-size: 15px; line-height: 1;
+}
+
+.page { padding: 30px; max-width: var(--max-w); width: 100%; margin: 0 auto; }
+.page > * + * { margin-top: 22px; }
+
+.grid { display: grid; gap: 18px; }
+.grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid.score-layout { grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.5fr); }
+.grid.split { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+
+/* ---------------------------------------------------------------- cards -- */
+
+.card {
+  background: linear-gradient(168deg, var(--card-a), var(--card-b));
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px 22px;
+  box-shadow: var(--shadow);
+  position: relative;
+  min-width: 0;
+}
+.card.pad-lg { padding: 26px 28px; }
+.card.flush { padding: 0; overflow: hidden; }
+.card-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+.card-head .title { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.card-head h3 { font-size: 0.98rem; }
+.card-head .sub { font-size: 0.795rem; color: var(--text-faint); }
+.card-head .actions { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+
+.stat { display: flex; flex-direction: column; gap: 5px; }
+.stat .label { font-size: 0.7rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--text-faint); }
+.stat .value { font-size: 1.72rem; font-weight: 660; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.stat .hint { font-size: 0.79rem; color: var(--text-dim); }
+/* Text values (a candidate or company name) need to wrap gracefully rather
+   than blow the card open the way a two-digit score can afford to. */
+.stat .value.text-value { font-size: 1.16rem; line-height: 1.35; letter-spacing: -0.015em; word-break: break-word; }
+
+/* --------------------------------------------------------------- pieces -- */
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 99px;
+  font-size: 0.775rem; font-weight: 500; line-height: 1.5;
+  border: 1px solid var(--border-strong); color: var(--text-dim);
+  background: var(--raised-2); white-space: nowrap;
+}
+.chip.solid { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 40%, transparent); color: var(--accent-text); }
+.chip.ok { background: var(--success-soft); border-color: color-mix(in srgb, var(--success) 38%, transparent); color: var(--ok-text); }
+.chip.warn { background: var(--warn-soft); border-color: color-mix(in srgb, var(--warn) 38%, transparent); color: var(--warn-text); }
+.chip.bad { background: var(--danger-soft); border-color: color-mix(in srgb, var(--danger) 38%, transparent); color: var(--bad-text); }
+.chip.mute { color: var(--text-faint); }
+.chip .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 9px 16px; border-radius: 10px; cursor: pointer;
+  font-family: inherit; font-size: 0.865rem; font-weight: 560;
+  border: 1px solid var(--border-strong); background: var(--raised-2); color: var(--text);
+  transition: transform var(--fast), background var(--fast), border-color var(--fast), opacity var(--fast);
+}
+.btn:hover:not(:disabled) { background: var(--raised-3); transform: translateY(-1px); }
+.btn:active:not(:disabled) { transform: translateY(0); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn.primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+  border-color: transparent; color: var(--on-accent-solid);
+  box-shadow: 0 12px 28px -14px var(--accent);
+}
+.btn.primary:hover:not(:disabled) { background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 88%, white),
+    color-mix(in srgb, var(--accent-alt) 88%, white)); }
+.btn.ghost { background: transparent; border-color: var(--border); color: var(--text-dim); }
+.btn.ghost:hover:not(:disabled) { color: var(--text); }
+.btn.sm { padding: 6px 11px; font-size: 0.79rem; border-radius: 8px; }
+.btn.block { width: 100%; }
+
+.input, .select, .textarea {
+  width: 100%; padding: 10px 13px; border-radius: 10px;
+  background: var(--raised-2); border: 1px solid var(--border-strong);
+  color: var(--text); font-family: inherit; font-size: 0.885rem;
+  transition: border-color var(--fast), background var(--fast);
+}
+.input:focus, .select:focus, .textarea:focus {
+  outline: none; border-color: var(--accent); background: var(--accent-soft);
+}
+.textarea { resize: vertical; min-height: 150px; line-height: 1.6; }
+.select option { background: var(--surface-2); color: var(--text); }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field label { font-size: 0.78rem; color: var(--text-dim); font-weight: 520; }
+
+.divider { height: 1px; background: var(--border); margin: 18px 0; border: 0; }
+
+.muted { color: var(--text-dim); }
+.faint { color: var(--text-faint); }
+.small { font-size: 0.8rem; }
+.tiny { font-size: 0.735rem; }
+.mono { font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace; }
+.tabular { font-variant-numeric: tabular-nums; }
+.center { text-align: center; }
+.row { display: flex; align-items: center; gap: 10px; }
+.row.wrap { flex-wrap: wrap; }
+.row.between { justify-content: space-between; }
+.col { display: flex; flex-direction: column; gap: 10px; }
+.spacer { flex: 1; }
+
+/* ------------------------------------------------------------- feedback -- */
+
+.skeleton {
+  background: linear-gradient(90deg, var(--raised-2) 25%, var(--raised-3) 37%, var(--raised-2) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--r-sm);
+}
+@keyframes shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+.spinner {
+  width: 17px; height: 17px; border-radius: 50%;
+  border: 2px solid var(--track); border-top-color: var(--accent-2);
+  animation: spin 0.72s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.toast-host {
+  position: fixed; right: 22px; bottom: 22px; z-index: 200;
+  display: flex; flex-direction: column; gap: 10px; max-width: min(390px, calc(100vw - 44px));
+}
+.toast {
+  padding: 12px 15px; border-radius: var(--r);
+  background: var(--surface-2); border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-lg); font-size: 0.855rem;
+  animation: slide-in 260ms var(--ease);
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.toast.error { border-color: color-mix(in srgb, var(--danger) 45%, transparent); }
+.toast.success { border-color: color-mix(in srgb, var(--success) 45%, transparent); }
+@keyframes slide-in { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+
+.empty {
+  padding: 40px 24px; text-align: center; color: var(--text-faint);
+  border: 1px dashed var(--border-strong); border-radius: var(--r-lg);
+}
+
+.fade-up { animation: fade-up var(--slow) both; }
+@keyframes fade-up { from { opacity: 0; transform: translateY(11px); } to { opacity: 1; transform: none; } }
+
+.progress { height: 7px; border-radius: 99px; background: var(--track); overflow: hidden; }
+.progress > span {
+  display: block; height: 100%; border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 900ms var(--ease);
+}
+
+/* ------------------------------------------------------------ responsive -- */
+
+@media (max-width: 1180px) {
+  .grid.cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid.cols-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid.score-layout, .grid.split { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 900px) {
+  body { overflow: auto; }
+  .app { flex-direction: column; height: auto; overflow: visible; }
+  .main { height: auto; overflow: visible; }
+  .sidebar {
+    width: 100%; flex: none; height: auto; overflow: visible;
+    flex-direction: row; align-items: center; overflow-x: auto;
+    border-right: 0; border-bottom: 1px solid var(--border); padding: 12px;
+  }
+  .brand { padding: 0 12px 0 4px; }
+  .brand-text strong { white-space: nowrap; }
+  .brand-text span { display: none; }
+  .nav { flex-direction: row; }
+  .nav-label, .sidebar-foot { display: none; }
+  .nav-item { white-space: nowrap; }
+  .topbar { padding: 14px 16px; }
+  /* Leave room for the floating assistant button over the last control. */
+  .page { padding: 18px 16px 96px; }
+  .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

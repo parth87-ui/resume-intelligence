@@ -1,0 +1,400 @@
+{
+  "version": "1.0.0",
+  "description": "Role baselines. A role defines the skill spine of a job family, independent of company. Effective requirements = role baseline + company profile + experience level + optional curated override.",
+  "importance_bands": {
+    "high": "importance >= 0.85 - repeatedly listed as a hard requirement",
+    "medium": "0.65 <= importance < 0.85 - frequently requested",
+    "low": "importance < 0.65 - differentiator / nice to have"
+  },
+  "roles": [
+    {
+      "id": "ai-engineer",
+      "title": "AI Engineer",
+      "family": "ai",
+      "summary": "Builds applied AI products on top of foundation models and classical ML, owning the path from prototype to production service.",
+      "radar_axes": ["ml", "language", "cloud", "devops", "cs"],
+      "required_skills": [
+        {"skill": "Python", "importance": 1.0},
+        {"skill": "Machine Learning", "importance": 0.95},
+        {"skill": "Deep Learning", "importance": 0.88},
+        {"skill": "LLMs", "importance": 0.9},
+        {"skill": "REST APIs", "importance": 0.85},
+        {"skill": "PyTorch", "importance": 0.8},
+        {"skill": "Model Deployment", "importance": 0.85},
+        {"skill": "Git", "importance": 0.7}
+      ],
+      "preferred_skills": [
+        {"skill": "RAG", "importance": 0.78},
+        {"skill": "Hugging Face Transformers", "importance": 0.75},
+        {"skill": "Vector Databases", "importance": 0.7},
+        {"skill": "Docker", "importance": 0.75},
+        {"skill": "LangChain", "importance": 0.6},
+        {"skill": "Model Fine-Tuning", "importance": 0.68},
+        {"skill": "Responsible AI", "importance": 0.6}
+      ],
+      "optional_skills": [
+        {"skill": "Kubernetes", "importance": 0.45},
+        {"skill": "CUDA", "importance": 0.4},
+        {"skill": "Streaming", "importance": 0.35}
+      ],
+      "keywords": ["production ai systems", "foundation models", "inference latency", "evaluation harness", "prompt engineering", "model integration", "end-to-end ownership", "ai product"],
+      "responsibilities": [
+        "Design and ship AI features backed by foundation models or custom models",
+        "Build evaluation harnesses that measure quality, latency and cost",
+        "Integrate models into production services with monitoring and guardrails",
+        "Partner with product and platform teams to move prototypes to production"
+      ],
+      "soft_skills": ["Problem Solving", "Communication", "Ownership", "Collaboration"]
+    },
+    {
+      "id": "machine-learning-engineer",
+      "title": "Machine Learning Engineer",
+      "family": "ai",
+      "summary": "Owns the full ML lifecycle: data preparation, model training, evaluation, deployment and monitoring at production scale.",
+      "radar_axes": ["ml", "cloud", "devops", "data", "language"],
+      "required_skills": [
+        {"skill": "Python", "importance": 1.0},
+        {"skill": "Machine Learning", "importance": 1.0},
+        {"skill": "Scikit-learn", "importance": 0.85},
+        {"skill": "Deep Learning", "importance": 0.85},
+        {"skill": "Model Evaluation", "importance": 0.88},
+        {"skill": "Feature Engineering", "importance": 0.85},
+        {"skill": "Model Deployment", "importance": 0.9},
+        {"skill": "SQL", "importance": 0.75},
+        {"skill": "Git", "importance": 0.7}
+      ],
+      "preferred_skills": [
+        {"skill": "MLOps", "importance": 0.8},
+        {"skill": "Docker", "importance": 0.8},
+        {"skill": "PyTorch", "importance": 0.75},
+        {"skill": "TensorFlow", "importance": 0.7},
+        {"skill": "Data Pipelines", "importance": 0.7},
+        {"skill": "MLflow", "importance": 0.62},
+        {"skill": "Apache Spark", "importance": 0.6}
+      ],
+      "optional_skills": [
+        {"skill": "Kubernetes", "importance": 0.5},
+        {"skill": "Terraform", "importance": 0.35},
+        {"skill": "Streaming", "importance": 0.4},
+        {"skill": "Reinforcement Learning", "importance": 0.3}
+      ],
+      "keywords": ["model deployment", "production ml", "training pipeline", "feature store", "model monitoring", "scalable systems", "data pipelines", "offline and online evaluation", "inference"],
+      "responsibilities": [
+        "Build and maintain training and inference pipelines that run reliably in production",
+        "Improve model quality through feature engineering and rigorous offline evaluation",
+        "Deploy models as services and monitor drift, latency and cost after launch",
+        "Collaborate with data engineering on reliable, well-tested data inputs"
+      ],
+      "soft_skills": ["Ownership", "Collaboration", "Problem Solving", "Communication"]
+    },
+    {
+      "id": "data-scientist",
+      "title": "Data Scientist",
+      "family": "data",
+      "summary": "Turns data into decisions through statistical analysis, experimentation and predictive modelling, and communicates findings to stakeholders.",
+      "radar_axes": ["ml", "data", "language", "soft", "database"],
+      "required_skills": [
+        {"skill": "Python", "importance": 0.95},
+        {"skill": "SQL", "importance": 0.95},
+        {"skill": "Statistics", "importance": 0.95},
+        {"skill": "Machine Learning", "importance": 0.9},
+        {"skill": "Pandas", "importance": 0.85},
+        {"skill": "Data Analysis", "importance": 0.9},
+        {"skill": "Data Visualization", "importance": 0.8},
+        {"skill": "A/B Testing", "importance": 0.85}
+      ],
+      "preferred_skills": [
+        {"skill": "Scikit-learn", "importance": 0.78},
+        {"skill": "Model Evaluation", "importance": 0.72},
+        {"skill": "Time Series Analysis", "importance": 0.6},
+        {"skill": "R", "importance": 0.55},
+        {"skill": "Communication", "importance": 0.8},
+        {"skill": "Business Acumen", "importance": 0.72}
+      ],
+      "optional_skills": [
+        {"skill": "Apache Spark", "importance": 0.45},
+        {"skill": "Deep Learning", "importance": 0.45},
+        {"skill": "Tableau", "importance": 0.4},
+        {"skill": "Databricks", "importance": 0.35}
+      ],
+      "keywords": ["experimentation", "statistical significance", "causal inference", "stakeholder impact", "metrics definition", "hypothesis testing", "data storytelling", "business impact"],
+      "responsibilities": [
+        "Design and analyse experiments that guide product and business decisions",
+        "Build predictive and inferential models on large behavioural datasets",
+        "Define and monitor metrics that reflect real user and business outcomes",
+        "Communicate findings and recommendations to non-technical stakeholders"
+      ],
+      "soft_skills": ["Communication", "Business Acumen", "Problem Solving", "Collaboration"]
+    },
+    {
+      "id": "data-analyst",
+      "title": "Data Analyst",
+      "family": "data",
+      "summary": "Answers business questions with SQL, dashboards and reporting, and makes analysis usable by the teams that act on it.",
+      "radar_axes": ["data", "database", "language", "soft", "tool"],
+      "required_skills": [
+        {"skill": "SQL", "importance": 1.0},
+        {"skill": "Data Analysis", "importance": 0.95},
+        {"skill": "Data Visualization", "importance": 0.9},
+        {"skill": "Excel", "importance": 0.78},
+        {"skill": "Statistics", "importance": 0.8},
+        {"skill": "Communication", "importance": 0.85}
+      ],
+      "preferred_skills": [
+        {"skill": "Python", "importance": 0.75},
+        {"skill": "Tableau", "importance": 0.7},
+        {"skill": "Power BI", "importance": 0.65},
+        {"skill": "Pandas", "importance": 0.6},
+        {"skill": "A/B Testing", "importance": 0.6},
+        {"skill": "Business Acumen", "importance": 0.75}
+      ],
+      "optional_skills": [
+        {"skill": "Looker", "importance": 0.45},
+        {"skill": "dbt", "importance": 0.35},
+        {"skill": "BigQuery", "importance": 0.4},
+        {"skill": "R", "importance": 0.3}
+      ],
+      "keywords": ["dashboards", "kpi", "reporting", "business insights", "data quality", "self-serve analytics", "cohort analysis", "funnel analysis"],
+      "responsibilities": [
+        "Write and optimise SQL to answer recurring and ad-hoc business questions",
+        "Build dashboards that teams use without analyst intervention",
+        "Validate data quality and reconcile discrepancies across sources",
+        "Translate analysis into clear recommendations for stakeholders"
+      ],
+      "soft_skills": ["Communication", "Business Acumen", "Collaboration", "Problem Solving"]
+    },
+    {
+      "id": "software-engineer",
+      "title": "Software Development Engineer",
+      "family": "engineering",
+      "summary": "Designs, builds and operates production software with a strong grounding in data structures, algorithms and system design.",
+      "radar_axes": ["cs", "language", "devops", "database", "soft"],
+      "required_skills": [
+        {"skill": "Data Structures", "importance": 1.0},
+        {"skill": "Algorithms", "importance": 1.0},
+        {"skill": "Object-Oriented Programming", "importance": 0.88},
+        {"skill": "Git", "importance": 0.8},
+        {"skill": "SQL", "importance": 0.75},
+        {"skill": "REST APIs", "importance": 0.8},
+        {"skill": "Testing", "importance": 0.8},
+        {"skill": "System Design", "importance": 0.82}
+      ],
+      "preferred_skills": [
+        {"skill": "Java", "importance": 0.7},
+        {"skill": "Python", "importance": 0.7},
+        {"skill": "C++", "importance": 0.6},
+        {"skill": "Docker", "importance": 0.65},
+        {"skill": "CI/CD", "importance": 0.65},
+        {"skill": "Microservices", "importance": 0.6},
+        {"skill": "Operating Systems", "importance": 0.6}
+      ],
+      "optional_skills": [
+        {"skill": "Kubernetes", "importance": 0.45},
+        {"skill": "Go", "importance": 0.4},
+        {"skill": "Monitoring", "importance": 0.45},
+        {"skill": "Security", "importance": 0.4}
+      ],
+      "keywords": ["scalable systems", "low latency", "code review", "on-call", "production services", "distributed systems", "design document", "customer impact"],
+      "responsibilities": [
+        "Design, implement and review production services used by real customers",
+        "Write tested, maintainable code and participate in design reviews",
+        "Debug and resolve production issues, including on-call rotations",
+        "Improve performance, reliability and cost of owned systems"
+      ],
+      "soft_skills": ["Ownership", "Collaboration", "Problem Solving", "Communication"]
+    },
+    {
+      "id": "backend-developer",
+      "title": "Backend Developer",
+      "family": "engineering",
+      "summary": "Builds server-side services, APIs and data layers that stay correct and fast under load.",
+      "radar_axes": ["cs", "database", "devops", "language", "framework"],
+      "required_skills": [
+        {"skill": "REST APIs", "importance": 0.95},
+        {"skill": "SQL", "importance": 0.9},
+        {"skill": "Data Structures", "importance": 0.85},
+        {"skill": "Object-Oriented Programming", "importance": 0.82},
+        {"skill": "Git", "importance": 0.8},
+        {"skill": "Testing", "importance": 0.8},
+        {"skill": "Data Modeling", "importance": 0.75}
+      ],
+      "preferred_skills": [
+        {"skill": "Docker", "importance": 0.75},
+        {"skill": "Microservices", "importance": 0.72},
+        {"skill": "PostgreSQL", "importance": 0.7},
+        {"skill": "Redis", "importance": 0.6},
+        {"skill": "System Design", "importance": 0.75},
+        {"skill": "CI/CD", "importance": 0.65},
+        {"skill": "Caching", "importance": 0.6}
+      ],
+      "optional_skills": [
+        {"skill": "Kafka", "importance": 0.5},
+        {"skill": "Kubernetes", "importance": 0.45},
+        {"skill": "Go", "importance": 0.4},
+        {"skill": "Security", "importance": 0.5}
+      ],
+      "keywords": ["api design", "throughput", "database indexing", "idempotency", "service reliability", "schema migration", "backend services", "latency"],
+      "responsibilities": [
+        "Design and implement APIs and background services",
+        "Model data and tune queries for correctness and performance",
+        "Add observability, error handling and graceful degradation",
+        "Own service reliability and incident follow-ups"
+      ],
+      "soft_skills": ["Ownership", "Problem Solving", "Collaboration", "Communication"]
+    },
+    {
+      "id": "full-stack-developer",
+      "title": "Full Stack Developer",
+      "family": "engineering",
+      "summary": "Delivers complete features across UI, API and database, balancing user experience with backend correctness.",
+      "radar_axes": ["framework", "language", "cs", "database", "devops"],
+      "required_skills": [
+        {"skill": "JavaScript", "importance": 0.95},
+        {"skill": "React", "importance": 0.88},
+        {"skill": "REST APIs", "importance": 0.9},
+        {"skill": "SQL", "importance": 0.82},
+        {"skill": "Git", "importance": 0.8},
+        {"skill": "Node.js", "importance": 0.75},
+        {"skill": "Testing", "importance": 0.72}
+      ],
+      "preferred_skills": [
+        {"skill": "TypeScript", "importance": 0.75},
+        {"skill": "Docker", "importance": 0.65},
+        {"skill": "PostgreSQL", "importance": 0.65},
+        {"skill": "CI/CD", "importance": 0.6},
+        {"skill": "System Design", "importance": 0.65},
+        {"skill": "MongoDB", "importance": 0.55},
+        {"skill": "Tailwind CSS", "importance": 0.5}
+      ],
+      "optional_skills": [
+        {"skill": "Next.js", "importance": 0.5},
+        {"skill": "AWS", "importance": 0.5},
+        {"skill": "GraphQL", "importance": 0.4},
+        {"skill": "React Native", "importance": 0.3}
+      ],
+      "keywords": ["end-to-end feature", "responsive ui", "component library", "api integration", "state management", "deployment", "user experience"],
+      "responsibilities": [
+        "Ship user-facing features from database schema to interface",
+        "Build reusable components and accessible interfaces",
+        "Integrate and secure APIs consumed by the frontend",
+        "Deploy and monitor full-stack applications"
+      ],
+      "soft_skills": ["Collaboration", "Ownership", "Communication", "Problem Solving"]
+    },
+    {
+      "id": "data-engineer",
+      "title": "Data Engineer",
+      "family": "data",
+      "summary": "Builds the pipelines, warehouses and contracts that make data trustworthy and available for analytics and ML.",
+      "radar_axes": ["data", "database", "cloud", "devops", "language"],
+      "required_skills": [
+        {"skill": "SQL", "importance": 1.0},
+        {"skill": "Python", "importance": 0.9},
+        {"skill": "ETL", "importance": 0.95},
+        {"skill": "Data Pipelines", "importance": 0.95},
+        {"skill": "Data Modeling", "importance": 0.85},
+        {"skill": "Data Warehousing", "importance": 0.85},
+        {"skill": "Git", "importance": 0.7}
+      ],
+      "preferred_skills": [
+        {"skill": "Apache Spark", "importance": 0.8},
+        {"skill": "Airflow", "importance": 0.78},
+        {"skill": "Kafka", "importance": 0.65},
+        {"skill": "Docker", "importance": 0.6},
+        {"skill": "Data Quality", "importance": 0.7},
+        {"skill": "Big Data", "importance": 0.65},
+        {"skill": "dbt", "importance": 0.55}
+      ],
+      "optional_skills": [
+        {"skill": "Snowflake", "importance": 0.5},
+        {"skill": "Terraform", "importance": 0.4},
+        {"skill": "Streaming", "importance": 0.55},
+        {"skill": "Scala", "importance": 0.35}
+      ],
+      "keywords": ["data pipelines", "batch and streaming", "sla", "partitioning", "schema evolution", "data lineage", "cost optimisation", "petabyte scale"],
+      "responsibilities": [
+        "Build and operate batch and streaming pipelines with clear SLAs",
+        "Model warehouse tables that analysts and ML teams can rely on",
+        "Instrument data quality checks and lineage",
+        "Optimise storage and compute cost of the data platform"
+      ],
+      "soft_skills": ["Ownership", "Collaboration", "Problem Solving", "Communication"]
+    },
+    {
+      "id": "cloud-engineer",
+      "title": "Cloud Engineer",
+      "family": "infrastructure",
+      "summary": "Designs, automates and operates cloud infrastructure with an emphasis on reliability, security and cost.",
+      "radar_axes": ["cloud", "devops", "cs", "tool", "language"],
+      "required_skills": [
+        {"skill": "Linux", "importance": 0.9},
+        {"skill": "Docker", "importance": 0.88},
+        {"skill": "CI/CD", "importance": 0.88},
+        {"skill": "Terraform", "importance": 0.85},
+        {"skill": "Monitoring", "importance": 0.8},
+        {"skill": "Computer Networks", "importance": 0.75},
+        {"skill": "Bash", "importance": 0.7}
+      ],
+      "preferred_skills": [
+        {"skill": "Kubernetes", "importance": 0.8},
+        {"skill": "Python", "importance": 0.7},
+        {"skill": "Security", "importance": 0.7},
+        {"skill": "Load Balancing", "importance": 0.68},
+        {"skill": "Serverless", "importance": 0.6},
+        {"skill": "System Design", "importance": 0.65}
+      ],
+      "optional_skills": [
+        {"skill": "Go", "importance": 0.4},
+        {"skill": "DevOps", "importance": 0.6},
+        {"skill": "Microservices", "importance": 0.45}
+      ],
+      "keywords": ["infrastructure as code", "high availability", "disaster recovery", "cost optimisation", "least privilege", "automation", "uptime", "incident response"],
+      "responsibilities": [
+        "Provision and manage cloud infrastructure through code",
+        "Automate deployments and enforce security baselines",
+        "Instrument monitoring, alerting and incident response",
+        "Reduce infrastructure cost while protecting reliability"
+      ],
+      "soft_skills": ["Ownership", "Problem Solving", "Communication", "Collaboration"]
+    },
+    {
+      "id": "nlp-engineer",
+      "title": "NLP Engineer",
+      "family": "ai",
+      "summary": "Builds language understanding and generation systems, from tokenisation and embeddings to fine-tuned and retrieval-augmented models.",
+      "radar_axes": ["ml", "library", "language", "cloud", "devops"],
+      "required_skills": [
+        {"skill": "Python", "importance": 1.0},
+        {"skill": "NLP", "importance": 1.0},
+        {"skill": "Deep Learning", "importance": 0.9},
+        {"skill": "Transformers", "importance": 0.9},
+        {"skill": "PyTorch", "importance": 0.82},
+        {"skill": "Model Evaluation", "importance": 0.82},
+        {"skill": "Machine Learning", "importance": 0.9}
+      ],
+      "preferred_skills": [
+        {"skill": "Hugging Face Transformers", "importance": 0.82},
+        {"skill": "spaCy", "importance": 0.7},
+        {"skill": "LLMs", "importance": 0.8},
+        {"skill": "Model Fine-Tuning", "importance": 0.75},
+        {"skill": "RAG", "importance": 0.7},
+        {"skill": "Model Deployment", "importance": 0.72},
+        {"skill": "Vector Databases", "importance": 0.6}
+      ],
+      "optional_skills": [
+        {"skill": "CUDA", "importance": 0.45},
+        {"skill": "Docker", "importance": 0.55},
+        {"skill": "NLTK", "importance": 0.35},
+        {"skill": "Responsible AI", "importance": 0.5}
+      ],
+      "keywords": ["tokenisation", "embeddings", "named entity recognition", "text classification", "sequence modelling", "evaluation metrics", "multilingual", "inference optimisation"],
+      "responsibilities": [
+        "Build and fine-tune language models for domain-specific tasks",
+        "Design evaluation sets and metrics for language quality",
+        "Optimise inference latency and cost for language workloads",
+        "Ship NLP components into production products"
+      ],
+      "soft_skills": ["Problem Solving", "Communication", "Collaboration", "Ownership"]
+    }
+  ]
+}

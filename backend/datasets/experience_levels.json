@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0",
+  "description": "Experience levels rescale requirement importance and rebalance the scoring weights. A student is not penalised on the same experience axis as a senior hire - the weight moves to projects and education instead.",
+  "levels": [
+    {
+      "id": "intern",
+      "title": "Internship",
+      "min_years": 0,
+      "max_years": 1,
+      "expected_years": 0,
+      "importance_scale": 0.8,
+      "weights": {"skills": 0.35, "keywords": 0.2, "experience": 0.05, "projects": 0.25, "education": 0.1, "semantic": 0.05},
+      "expectations": [
+        "Coursework, personal projects and internships count as evidence",
+        "Fundamentals matter more than breadth of tooling",
+        "One deep project beats five shallow ones"
+      ]
+    },
+    {
+      "id": "entry",
+      "title": "Entry Level (0-2 years)",
+      "min_years": 0,
+      "max_years": 2,
+      "expected_years": 1,
+      "importance_scale": 0.9,
+      "weights": {"skills": 0.35, "keywords": 0.2, "experience": 0.1, "projects": 0.2, "education": 0.08, "semantic": 0.07},
+      "expectations": [
+        "Demonstrated ability to ship something complete, however small",
+        "Clear fundamentals in the core language and CS basics",
+        "Projects should show independent problem solving"
+      ]
+    },
+    {
+      "id": "mid",
+      "title": "Mid Level (2-5 years)",
+      "min_years": 2,
+      "max_years": 5,
+      "expected_years": 3,
+      "importance_scale": 1.0,
+      "weights": {"skills": 0.35, "keywords": 0.2, "experience": 0.15, "projects": 0.15, "education": 0.05, "semantic": 0.1},
+      "expectations": [
+        "Ownership of production features or systems",
+        "Evidence of measurable impact in a professional setting",
+        "Depth in the primary stack plus working knowledge of adjacent systems"
+      ]
+    },
+    {
+      "id": "senior",
+      "title": "Senior (5+ years)",
+      "min_years": 5,
+      "max_years": 30,
+      "expected_years": 7,
+      "importance_scale": 1.1,
+      "weights": {"skills": 0.32, "keywords": 0.18, "experience": 0.25, "projects": 0.1, "education": 0.03, "semantic": 0.12},
+      "expectations": [
+        "Design ownership and technical leadership on non-trivial systems",
+        "Mentorship, cross-team influence or hiring involvement",
+        "Business or user impact stated in outcome terms"
+      ]
+    }
+  ]
+}

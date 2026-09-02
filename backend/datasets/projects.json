@@ -1,0 +1,468 @@
+{
+  "version": "1.0.0",
+  "description": "Project catalogue used by the recommendation engine. Projects are matched to a candidate by the skills they actually teach, so a project is only recommended when it closes a real, prioritised gap. resume_bullet_template is a fill-in-the-blank scaffold - it is never presented as an achievement the candidate already has.",
+  "projects": [
+    {
+      "id": "e2e-ml-aws",
+      "title": "Deploy an End-to-End Machine Learning Model on AWS",
+      "description": "Train a model on a real dataset, wrap it in a REST API, containerise it, deploy it to AWS and add basic monitoring so you can talk about the whole lifecycle, not just the notebook.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 4,
+      "skills_taught": ["AWS", "Docker", "Model Deployment", "MLOps", "FastAPI", "REST APIs", "Amazon SageMaker", "Monitoring"],
+      "prerequisites": ["Python", "Machine Learning"],
+      "objectives": [
+        "Train and evaluate a model with a held-out test set",
+        "Serve predictions through a REST API",
+        "Containerise the service with Docker",
+        "Deploy to AWS (SageMaker endpoint or ECS/Lambda)",
+        "Log requests and track model performance after deployment"
+      ],
+      "deliverables": ["Public repository with README and architecture diagram", "Live or recorded demo of the deployed endpoint", "Short write-up of latency and cost per prediction"],
+      "roles": ["machine-learning-engineer", "ai-engineer", "nlp-engineer"],
+      "companies": ["amazon", "netflix", "adobe"],
+      "resume_bullet_template": "Deployed a <model type> model as a containerised REST service on AWS <service>, serving predictions at <latency> ms p95 on <dataset/traffic description>.",
+      "verification": "Keep the endpoint reachable or record a demo video - interviewers ask to see it."
+    },
+    {
+      "id": "mlops-pipeline",
+      "title": "Reproducible MLOps Pipeline with Experiment Tracking",
+      "description": "Build a training pipeline where every run is versioned, tracked and reproducible, with automated retraining triggered by new data.",
+      "difficulty": "Advanced",
+      "duration_weeks": 5,
+      "skills_taught": ["MLOps", "MLflow", "CI/CD", "Docker", "Model Evaluation", "Airflow", "Monitoring"],
+      "prerequisites": ["Python", "Machine Learning", "Git"],
+      "objectives": [
+        "Version datasets, code and model artefacts together",
+        "Track experiments with metrics and parameters",
+        "Automate retraining and evaluation in CI",
+        "Register the best model and promote it through stages",
+        "Detect and alert on data or prediction drift"
+      ],
+      "deliverables": ["Pipeline repository", "Experiment tracking dashboard screenshots", "Model registry with promotion history"],
+      "roles": ["machine-learning-engineer", "ai-engineer", "data-engineer"],
+      "companies": ["amazon", "microsoft", "meta"],
+      "resume_bullet_template": "Built a reproducible training pipeline with experiment tracking and automated retraining, cutting the time to evaluate a new model idea from <before> to <after>.",
+      "verification": "Show the run history - reviewers look for evidence of many tracked iterations, not one."
+    },
+    {
+      "id": "rag-assistant",
+      "title": "Retrieval-Augmented Question Answering Assistant",
+      "description": "Build a question answering system over a document corpus you care about, with chunking, embeddings, a vector store and a measured evaluation set.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 3,
+      "skills_taught": ["RAG", "LLMs", "Vector Databases", "NLP", "Hugging Face Transformers", "LangChain", "Model Evaluation"],
+      "prerequisites": ["Python"],
+      "objectives": [
+        "Chunk and embed a document corpus",
+        "Implement retrieval with a vector store",
+        "Ground generated answers in retrieved passages with citations",
+        "Build an evaluation set and measure answer quality",
+        "Handle failure cases such as no relevant context"
+      ],
+      "deliverables": ["Working demo application", "Evaluation notebook with scored examples", "Write-up of retrieval quality trade-offs"],
+      "roles": ["ai-engineer", "nlp-engineer", "machine-learning-engineer"],
+      "companies": ["microsoft", "adobe", "google"],
+      "resume_bullet_template": "Built a retrieval-augmented QA system over <corpus>, achieving <metric> on a hand-built evaluation set of <n> questions.",
+      "verification": "The evaluation set is the differentiator - most candidates skip it, and interviewers notice."
+    },
+    {
+      "id": "llm-finetune",
+      "title": "Fine-Tune a Small Language Model for a Domain Task",
+      "description": "Take an open-weights model and fine-tune it with LoRA on a focused task, comparing it honestly against a prompted baseline.",
+      "difficulty": "Advanced",
+      "duration_weeks": 4,
+      "skills_taught": ["Model Fine-Tuning", "LLMs", "PyTorch", "Hugging Face Transformers", "Model Evaluation", "Deep Learning"],
+      "prerequisites": ["Python", "Deep Learning"],
+      "objectives": [
+        "Prepare and clean a task-specific dataset",
+        "Fine-tune with parameter-efficient methods",
+        "Compare against a zero-shot and few-shot baseline",
+        "Measure quality, latency and cost",
+        "Document where the model still fails"
+      ],
+      "deliverables": ["Training repository and model card", "Baseline comparison table", "Documented failure analysis"],
+      "roles": ["nlp-engineer", "ai-engineer", "machine-learning-engineer"],
+      "companies": ["nvidia", "meta", "adobe"],
+      "resume_bullet_template": "Fine-tuned <base model> with LoRA for <task>, improving <metric> from <baseline> to <result> against a prompted baseline.",
+      "verification": "Publish the model card - honest failure analysis reads as senior."
+    },
+    {
+      "id": "recsys-ranking",
+      "title": "Recommendation and Ranking System with Offline Evaluation",
+      "description": "Build a recommender on a public interaction dataset, implement ranking metrics properly, and simulate an online experiment.",
+      "difficulty": "Advanced",
+      "duration_weeks": 5,
+      "skills_taught": ["Recommendation Systems", "Machine Learning", "Feature Engineering", "Model Evaluation", "A/B Testing", "Apache Spark"],
+      "prerequisites": ["Python", "Machine Learning"],
+      "objectives": [
+        "Build a baseline (popularity) and a learned ranker",
+        "Implement NDCG, recall@k and coverage correctly",
+        "Handle cold start explicitly",
+        "Design an A/B test you would run to validate the model",
+        "Discuss the offline / online metric gap"
+      ],
+      "deliverables": ["Repository with reproducible evaluation", "Metric comparison across models", "Experiment design document"],
+      "roles": ["machine-learning-engineer", "data-scientist", "ai-engineer"],
+      "companies": ["meta", "netflix", "amazon"],
+      "resume_bullet_template": "Built and evaluated a ranking model on <dataset>, improving NDCG@10 from <baseline> to <result> over a popularity baseline.",
+      "verification": "Show the baseline. A ranker with no baseline comparison is not evaluable."
+    },
+    {
+      "id": "streaming-pipeline",
+      "title": "Real-Time Streaming Data Pipeline",
+      "description": "Ingest a live or simulated event stream through Kafka, process it, and land it in a warehouse with quality checks and dashboards.",
+      "difficulty": "Advanced",
+      "duration_weeks": 5,
+      "skills_taught": ["Kafka", "Streaming", "Data Pipelines", "ETL", "Docker", "Data Quality", "Apache Spark"],
+      "prerequisites": ["Python", "SQL"],
+      "objectives": [
+        "Produce and consume events through a message broker",
+        "Handle late, duplicate and malformed events",
+        "Write processed data to a warehouse table",
+        "Add data quality assertions with alerting",
+        "Expose a dashboard on the live data"
+      ],
+      "deliverables": ["docker-compose stack others can run", "Architecture diagram", "Dashboard on the live stream"],
+      "roles": ["data-engineer", "backend-developer", "cloud-engineer"],
+      "companies": ["netflix", "amazon", "meta"],
+      "resume_bullet_template": "Built a streaming pipeline processing <volume> events/min through Kafka into <warehouse>, with automated data quality checks on <n> critical fields.",
+      "verification": "Exactly-once vs at-least-once reasoning is the interview question this project earns you."
+    },
+    {
+      "id": "warehouse-dbt",
+      "title": "Analytics Warehouse with dbt and Dimensional Models",
+      "description": "Take messy raw data and build a properly modelled warehouse with tested, documented transformations.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 3,
+      "skills_taught": ["dbt", "Data Warehousing", "Data Modeling", "SQL", "Data Quality", "ETL"],
+      "prerequisites": ["SQL"],
+      "objectives": [
+        "Design fact and dimension tables for a real domain",
+        "Implement incremental models",
+        "Add schema and data tests to every model",
+        "Generate documentation and lineage",
+        "Optimise a slow query and record the improvement"
+      ],
+      "deliverables": ["dbt project repository", "Generated docs site with lineage graph", "Before/after query performance notes"],
+      "roles": ["data-engineer", "data-analyst", "data-scientist"],
+      "companies": ["amazon", "google", "ibm"],
+      "resume_bullet_template": "Modelled <n> source tables into a tested dbt warehouse with <n> data tests, reducing a core report query from <before> to <after>.",
+      "verification": "Lineage graphs screenshot well and prove the modelling was real."
+    },
+    {
+      "id": "scalable-api",
+      "title": "Production-Grade REST API with Load Testing",
+      "description": "Build a backend service with authentication, caching, migrations and observability, then load test it and fix what breaks.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 4,
+      "skills_taught": ["REST APIs", "PostgreSQL", "Redis", "Caching", "Docker", "Testing", "Monitoring", "System Design"],
+      "prerequisites": ["Python", "SQL"],
+      "objectives": [
+        "Design resource-oriented endpoints with proper status codes",
+        "Add authentication and rate limiting",
+        "Introduce caching and measure the hit rate",
+        "Write integration tests and run them in CI",
+        "Load test and document the bottleneck you removed"
+      ],
+      "deliverables": ["API repository with OpenAPI docs", "Load test report", "Architecture and scaling notes"],
+      "roles": ["backend-developer", "full-stack-developer", "software-engineer"],
+      "companies": ["amazon", "microsoft", "netflix"],
+      "resume_bullet_template": "Built a REST service handling <rps> requests/sec at <latency> ms p95, improving throughput <n>x by introducing <specific change>.",
+      "verification": "Keep the load test output - the numbers are the point of this project."
+    },
+    {
+      "id": "k8s-platform",
+      "title": "Kubernetes Deployment with Infrastructure as Code",
+      "description": "Provision cloud infrastructure with Terraform, deploy a multi-service application to Kubernetes, and automate the whole thing in CI/CD.",
+      "difficulty": "Advanced",
+      "duration_weeks": 5,
+      "skills_taught": ["Kubernetes", "Terraform", "Docker", "CI/CD", "Monitoring", "Linux", "Load Balancing"],
+      "prerequisites": ["Docker", "Linux"],
+      "objectives": [
+        "Define all infrastructure as code",
+        "Deploy services with health checks and autoscaling",
+        "Set up ingress and TLS",
+        "Automate build and deploy in a pipeline",
+        "Add metrics, dashboards and alerts"
+      ],
+      "deliverables": ["Terraform and manifest repository", "CI/CD pipeline definition", "Grafana dashboard screenshots"],
+      "roles": ["cloud-engineer", "backend-developer", "software-engineer"],
+      "companies": ["ibm", "microsoft", "amazon"],
+      "resume_bullet_template": "Provisioned <cloud> infrastructure with Terraform and deployed <n> services to Kubernetes with automated CI/CD and autoscaling from <min> to <max> replicas.",
+      "verification": "`terraform destroy` then `apply` cleanly - reproducibility is the skill being demonstrated."
+    },
+    {
+      "id": "nlp-classifier",
+      "title": "Text Classification System with Transformer Fine-Tuning",
+      "description": "Build a text classifier end to end: baseline, transformer model, error analysis and a served endpoint.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 3,
+      "skills_taught": ["NLP", "Transformers", "Hugging Face Transformers", "PyTorch", "Model Evaluation", "Feature Engineering"],
+      "prerequisites": ["Python", "Machine Learning"],
+      "objectives": [
+        "Establish a TF-IDF plus linear baseline",
+        "Fine-tune a transformer and compare fairly",
+        "Analyse errors by class and slice",
+        "Handle class imbalance explicitly",
+        "Serve the model behind an API"
+      ],
+      "deliverables": ["Repository with both models", "Confusion matrix and per-class metrics", "Error analysis write-up"],
+      "roles": ["nlp-engineer", "machine-learning-engineer", "data-scientist"],
+      "companies": ["google", "microsoft", "adobe"],
+      "resume_bullet_template": "Fine-tuned a transformer for <task>, raising macro F1 from <baseline> to <result> over a TF-IDF baseline on <n> labelled examples.",
+      "verification": "The baseline comparison is what separates this from a tutorial."
+    },
+    {
+      "id": "cv-detection",
+      "title": "Computer Vision Detection Pipeline with Optimised Inference",
+      "description": "Train or adapt an object detection model, then make it fast enough to run in real time.",
+      "difficulty": "Advanced",
+      "duration_weeks": 5,
+      "skills_taught": ["Computer Vision", "Deep Learning", "PyTorch", "OpenCV", "Model Deployment", "CUDA"],
+      "prerequisites": ["Python", "Deep Learning"],
+      "objectives": [
+        "Prepare and augment an image dataset",
+        "Train or fine-tune a detection model",
+        "Measure mAP correctly",
+        "Optimise inference (quantisation, batching or TensorRT)",
+        "Report the speed/accuracy trade-off"
+      ],
+      "deliverables": ["Repository with training and inference code", "Annotated demo video", "Latency vs accuracy table"],
+      "roles": ["machine-learning-engineer", "ai-engineer"],
+      "companies": ["nvidia", "apple", "adobe"],
+      "resume_bullet_template": "Optimised a detection model to <fps> FPS on <hardware> with <n>% mAP retained, a <n>x speedup over the unoptimised baseline.",
+      "verification": "Report the hardware. Speed claims without hardware context are not credible."
+    },
+    {
+      "id": "gpu-kernel",
+      "title": "GPU-Accelerated Compute Kernel with Benchmarks",
+      "description": "Implement a compute-heavy operation on CPU, then in CUDA, and benchmark the difference rigorously.",
+      "difficulty": "Advanced",
+      "duration_weeks": 4,
+      "skills_taught": ["CUDA", "C++", "Algorithms", "Operating Systems", "Linux"],
+      "prerequisites": ["C++"],
+      "objectives": [
+        "Write a correct CPU reference implementation",
+        "Port the hot path to CUDA",
+        "Profile memory access patterns",
+        "Benchmark across input sizes",
+        "Explain where the speedup comes from"
+      ],
+      "deliverables": ["Repository with both implementations", "Benchmark plots", "Profiling analysis"],
+      "roles": ["machine-learning-engineer", "software-engineer"],
+      "companies": ["nvidia", "apple"],
+      "resume_bullet_template": "Implemented <operation> in CUDA achieving a <n>x speedup over an optimised CPU baseline on <hardware>, verified across <n> input sizes.",
+      "verification": "Correctness tests against the CPU reference are mandatory or the speedup means nothing."
+    },
+    {
+      "id": "ab-test-platform",
+      "title": "Experimentation Analysis on a Real Dataset",
+      "description": "Design, analyse and write up an A/B test properly, including power analysis and the decision you would make.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 2,
+      "skills_taught": ["A/B Testing", "Statistics", "Data Analysis", "Python", "Data Visualization", "Business Acumen"],
+      "prerequisites": ["Statistics"],
+      "objectives": [
+        "Define a primary metric and guardrail metrics",
+        "Run a power analysis to size the test",
+        "Analyse results with the right statistical test",
+        "Check for common pitfalls (peeking, novelty, SRM)",
+        "Write the launch recommendation"
+      ],
+      "deliverables": ["Analysis notebook", "One-page decision memo", "Reusable analysis template"],
+      "roles": ["data-scientist", "data-analyst", "machine-learning-engineer"],
+      "companies": ["meta", "google", "netflix"],
+      "resume_bullet_template": "Designed and analysed an experiment on <dataset>, sizing it via power analysis at <power> and recommending <decision> based on a <effect> lift.",
+      "verification": "The decision memo matters more than the notebook - it shows business judgement."
+    },
+    {
+      "id": "bi-dashboard",
+      "title": "Executive Analytics Dashboard with Defined Metrics",
+      "description": "Build a dashboard that a real stakeholder would use, with documented metric definitions and validated numbers.",
+      "difficulty": "Beginner",
+      "duration_weeks": 2,
+      "skills_taught": ["Data Visualization", "SQL", "Data Analysis", "Tableau", "Power BI", "Communication"],
+      "prerequisites": ["SQL"],
+      "objectives": [
+        "Interview a real or hypothetical stakeholder for requirements",
+        "Define every metric precisely in writing",
+        "Build the dashboard with drill-down capability",
+        "Validate numbers against a second source",
+        "Write the insight summary, not just the charts"
+      ],
+      "deliverables": ["Published dashboard or recorded walkthrough", "Metric definition document", "Insight summary"],
+      "roles": ["data-analyst", "data-scientist", "data-engineer"],
+      "companies": ["ibm", "microsoft", "amazon"],
+      "resume_bullet_template": "Built a <tool> dashboard covering <n> metrics for <audience>, replacing a manual report that previously took <time> per week.",
+      "verification": "The metric definition doc is the artefact that proves rigour."
+    },
+    {
+      "id": "fullstack-saas",
+      "title": "Full-Stack Application with Authentication and Deployment",
+      "description": "Ship a complete product: database, API, frontend, auth, tests and a live deployment.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 5,
+      "skills_taught": ["React", "Node.js", "REST APIs", "PostgreSQL", "TypeScript", "Docker", "CI/CD", "Testing"],
+      "prerequisites": ["JavaScript"],
+      "objectives": [
+        "Design the schema and API contract first",
+        "Build an accessible, responsive frontend",
+        "Implement secure authentication and authorisation",
+        "Write tests at both API and UI level",
+        "Deploy with a CI/CD pipeline"
+      ],
+      "deliverables": ["Live application URL", "Repository with README and setup guide", "Short architecture write-up"],
+      "roles": ["full-stack-developer", "backend-developer", "software-engineer"],
+      "companies": ["microsoft", "adobe", "meta"],
+      "resume_bullet_template": "Built and deployed a full-stack application with <feature set> serving <users> users, with <n>% test coverage and automated deploys.",
+      "verification": "A live URL converts far better than a repository link alone."
+    },
+    {
+      "id": "dsa-grind",
+      "title": "Structured Data Structures and Algorithms Practice Log",
+      "description": "Not a portfolio project - a disciplined study plan with a public log, aimed squarely at passing the coding screen.",
+      "difficulty": "Beginner",
+      "duration_weeks": 10,
+      "skills_taught": ["Data Structures", "Algorithms", "Problem Solving"],
+      "prerequisites": [],
+      "objectives": [
+        "Cover arrays, strings, hashing, trees, graphs, DP and heaps",
+        "Solve problems by pattern, not by memorisation",
+        "Write your own complexity analysis for each solution",
+        "Do timed mock sessions weekly",
+        "Track and revisit the problems you failed"
+      ],
+      "deliverables": ["Public solutions repository with notes", "Pattern summary document", "Timed mock interview log"],
+      "roles": ["software-engineer", "backend-developer", "full-stack-developer", "machine-learning-engineer"],
+      "companies": ["google", "amazon", "meta", "microsoft"],
+      "resume_bullet_template": "(This one strengthens interview performance rather than the resume - keep the repository linked, not described as a project.)",
+      "verification": "The complexity notes are what make the repository worth linking."
+    },
+    {
+      "id": "system-design-portfolio",
+      "title": "System Design Case Study Portfolio",
+      "description": "Write three deep design documents for systems you have not built, defending every trade-off - the closest thing to practising senior interviews on paper.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 4,
+      "skills_taught": ["System Design", "Microservices", "Caching", "Load Balancing", "Communication"],
+      "prerequisites": [],
+      "objectives": [
+        "Estimate scale from first principles",
+        "Design data models and API contracts",
+        "Justify storage and caching choices",
+        "Address failure modes and bottlenecks",
+        "Present the design in 30 minutes"
+      ],
+      "deliverables": ["Three written design documents", "Architecture diagrams", "Recorded 30-minute walkthrough"],
+      "roles": ["software-engineer", "backend-developer", "cloud-engineer"],
+      "companies": ["google", "amazon", "netflix"],
+      "resume_bullet_template": "(Link these as writing samples rather than listing them as work experience.)",
+      "verification": "Be explicit that these are case studies, never presented as systems you shipped."
+    },
+    {
+      "id": "spark-batch",
+      "title": "Large-Scale Batch Processing with Spark",
+      "description": "Process a dataset too large for pandas, and learn why distributed execution behaves the way it does.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 3,
+      "skills_taught": ["Apache Spark", "Big Data", "Data Pipelines", "ETL", "Python", "Databricks"],
+      "prerequisites": ["Python", "SQL"],
+      "objectives": [
+        "Load and transform a multi-gigabyte dataset",
+        "Understand partitioning and shuffles",
+        "Diagnose and fix a data skew problem",
+        "Cache strategically and measure the effect",
+        "Compare runtime against a single-machine baseline"
+      ],
+      "deliverables": ["Spark job repository", "Spark UI screenshots showing the optimisation", "Runtime comparison table"],
+      "roles": ["data-engineer", "machine-learning-engineer", "data-scientist"],
+      "companies": ["netflix", "amazon", "meta"],
+      "resume_bullet_template": "Processed <size> of data with Spark, cutting job runtime from <before> to <after> by resolving <specific issue>.",
+      "verification": "The skew fix is the story. Everything else is a tutorial."
+    },
+    {
+      "id": "monitoring-observability",
+      "title": "Observability Stack for a Running Service",
+      "description": "Instrument a service properly with metrics, logs, traces and alerts that would actually wake someone up for the right reason.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 3,
+      "skills_taught": ["Monitoring", "DevOps", "Docker", "Linux", "System Design", "CI/CD"],
+      "prerequisites": ["Docker"],
+      "objectives": [
+        "Emit structured logs and useful metrics",
+        "Build dashboards for the four golden signals",
+        "Define alerts with thresholds you can defend",
+        "Add distributed tracing across two services",
+        "Run a game day and document what you learned"
+      ],
+      "deliverables": ["Instrumented service repository", "Dashboard screenshots", "Incident simulation write-up"],
+      "roles": ["cloud-engineer", "backend-developer", "software-engineer"],
+      "companies": ["netflix", "amazon", "ibm"],
+      "resume_bullet_template": "Instrumented <service> with metrics, tracing and <n> alerts, cutting mean time to detect a simulated failure to <time>.",
+      "verification": "The game day write-up is the artefact senior reviewers actually read."
+    },
+    {
+      "id": "responsible-ai-audit",
+      "title": "Model Fairness and Explainability Audit",
+      "description": "Take a model - yours or a public one - and audit it for bias and explainability, then document what you would change.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 3,
+      "skills_taught": ["Responsible AI", "Model Evaluation", "Statistics", "Machine Learning", "Communication"],
+      "prerequisites": ["Machine Learning"],
+      "objectives": [
+        "Measure performance across demographic or contextual slices",
+        "Apply an explainability method and interpret it critically",
+        "Identify where the training data drives the disparity",
+        "Propose and test one mitigation",
+        "Write a model card"
+      ],
+      "deliverables": ["Audit notebook", "Model card", "Mitigation results with honest limitations"],
+      "roles": ["machine-learning-engineer", "data-scientist", "ai-engineer", "nlp-engineer"],
+      "companies": ["microsoft", "ibm", "google"],
+      "resume_bullet_template": "Audited <model> across <n> slices, identifying a <gap> performance disparity and reducing it to <result> with <mitigation>.",
+      "verification": "State the limitations. Overclaiming on fairness work is easy to catch in interview."
+    },
+    {
+      "id": "sql-optimisation",
+      "title": "SQL Performance Optimisation Case Study",
+      "description": "Take slow queries on a large table and make them fast, documenting exactly why each change worked.",
+      "difficulty": "Beginner",
+      "duration_weeks": 2,
+      "skills_taught": ["SQL", "PostgreSQL", "Data Modeling", "Data Analysis", "Caching"],
+      "prerequisites": ["SQL"],
+      "objectives": [
+        "Generate or find a table with millions of rows",
+        "Read and interpret query execution plans",
+        "Add indexes and measure the effect",
+        "Rewrite queries to avoid scans",
+        "Document each before/after with timings"
+      ],
+      "deliverables": ["Repository with queries and plans", "Before/after timing table", "Short explanation of each fix"],
+      "roles": ["data-analyst", "backend-developer", "data-engineer"],
+      "companies": ["amazon", "microsoft", "ibm"],
+      "resume_bullet_template": "Optimised <n> reporting queries on a <size>-row dataset, reducing p95 runtime from <before> to <after> through indexing and query rewrites.",
+      "verification": "Execution plans are the proof. Screenshot them."
+    },
+    {
+      "id": "cloud-cost-optimisation",
+      "title": "Cloud Cost and Reliability Optimisation",
+      "description": "Run a small workload in the cloud for a month, then cut its cost without hurting reliability - and prove both halves.",
+      "difficulty": "Intermediate",
+      "duration_weeks": 3,
+      "skills_taught": ["AWS", "Terraform", "Monitoring", "Serverless", "Load Balancing", "DevOps"],
+      "prerequisites": ["Docker"],
+      "objectives": [
+        "Deploy a workload and set up cost tracking",
+        "Right-size compute and storage",
+        "Introduce autoscaling or serverless where it fits",
+        "Verify reliability did not regress",
+        "Document monthly cost before and after"
+      ],
+      "deliverables": ["Infrastructure repository", "Cost breakdown before and after", "Reliability evidence"],
+      "roles": ["cloud-engineer", "data-engineer", "backend-developer"],
+      "companies": ["amazon", "netflix", "microsoft"],
+      "resume_bullet_template": "Reduced monthly cloud spend for <workload> from <before> to <after> through <changes>, with no regression in p95 latency or availability.",
+      "verification": "Real billing screenshots (redacted) are unusually persuasive for cloud roles."
+    }
+  ]
+}

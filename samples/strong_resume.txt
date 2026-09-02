@@ -1,0 +1,50 @@
+RAHUL MENON
+Bengaluru, India | rahul.menon@example.com | +91 90000 11111
+linkedin.com/in/rahulmenon | github.com/rmenon
+
+PROFESSIONAL SUMMARY
+Machine Learning Engineer with 4 years of experience building and deploying production ML systems
+on AWS. Focused on model deployment, scalable systems, data pipelines and measurable customer impact.
+
+TECHNICAL SKILLS
+Languages: Python, SQL, Java
+Machine Learning: Machine Learning, Deep Learning, PyTorch, TensorFlow, Scikit-learn, Feature Engineering, Model Evaluation
+Cloud: AWS, Amazon SageMaker, Amazon S3, AWS Lambda
+MLOps: Docker, Kubernetes, MLflow, CI/CD, Model Deployment, Monitoring
+Data: Pandas, NumPy, Apache Spark, Airflow, Data Pipelines
+
+WORK EXPERIENCE
+
+Machine Learning Engineer | Flipkart | Jan 2022 - Present
+- Deployed 7 ranking models to production on Amazon SageMaker serving 40M requests per day at 45 ms p95
+- Built training pipelines with Airflow and Apache Spark processing 2 TB of event data daily
+- Reduced inference cost per prediction by 38% through request batching and model quantisation
+- Owned end-to-end model monitoring with MLflow, cutting drift detection time from 9 days to 6 hours
+- Led A/B testing for ranking changes, delivering a 4.2% lift in click-through rate for 12M users
+
+Data Scientist | Swiggy | Jul 2020 - Dec 2021
+- Built demand forecasting models in Python and Scikit-learn, improving MAPE from 18% to 11%
+- Designed feature engineering pipelines on Apache Spark over 500M rows of order data
+- Containerised model services with Docker and automated deployment through CI/CD
+
+PROJECTS
+
+Real-Time Fraud Detection Platform
+- Deployed a streaming fraud model with Kafka and Docker on AWS handling 12k events/sec
+- Achieved 0.94 AUC with automated retraining and production model monitoring
+- Reduced false positives by 22% through feature engineering on transaction sequences
+- github.com/rmenon/fraud-platform
+
+Distributed Model Serving Benchmark
+- Benchmarked model deployment latency across Amazon SageMaker, AWS Lambda and Kubernetes
+- Documented a 3.4x throughput difference and published the methodology
+- Tech: Python, Docker, Kubernetes, AWS
+
+EDUCATION
+B.Tech in Computer Science and Engineering
+Indian Institute of Technology Madras, 2020
+CGPA: 9.1 / 10
+
+CERTIFICATIONS
+AWS Certified Machine Learning - Specialty, 2023
+Deep Learning Specialization - Coursera, 2021

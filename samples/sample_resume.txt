@@ -1,0 +1,56 @@
+ANANYA SHARMA
+Bengaluru, India | ananya.sharma@example.com | +91 98765 43210
+linkedin.com/in/ananya-sharma-ml | github.com/ananyasharma
+
+PROFESSIONAL SUMMARY
+Final-year Computer Science student and machine learning practitioner. Passionate about
+building models that solve real problems. Looking for a machine learning role where I can
+grow and contribute.
+
+TECHNICAL SKILLS
+Languages: Python, SQL, Java, C++
+Machine Learning: Scikit-learn, Pandas, NumPy, TensorFlow, Feature Engineering
+Data: Matplotlib, Seaborn, Jupyter, Excel
+Tools: Git, VS Code, Postman
+Other: Docker, Statistics, Data Structures, Algorithms
+
+WORK EXPERIENCE
+
+Machine Learning Intern | Fintrack Analytics Pvt Ltd | Jun 2024 - Dec 2024
+- Worked on a customer churn prediction model using Python and Scikit-learn
+- Helped the data team with cleaning and preprocessing of transaction records
+- Built dashboards to visualise model outputs for the business team
+- Participated in weekly model review meetings with senior data scientists
+
+Software Engineering Intern | Nexbyte Solutions | Jan 2024 - May 2024
+- Developed REST API endpoints in Flask for an internal reporting tool
+- Reduced average API response time from 820 ms to 240 ms by adding query indexes
+- Wrote unit tests achieving 78% coverage on the reporting module
+
+PROJECTS
+
+Movie Recommendation Engine
+- Built a collaborative filtering recommender on the MovieLens 100k dataset
+- Achieved RMSE of 0.91 compared to a 1.05 popularity baseline
+- Tech: Python, Pandas, Scikit-learn, Surprise
+- github.com/ananyasharma/movie-recsys
+
+Resume Keyword Analyser
+- Created a tool that compares resume text against job descriptions using TF-IDF
+- Implemented cosine similarity scoring and keyword extraction with NLTK
+
+Handwritten Digit Classifier
+- Trained a convolutional neural network on MNIST with TensorFlow reaching 99.1% test accuracy
+
+EDUCATION
+B.Tech in Computer Science and Engineering
+Ramaiah Institute of Technology, Bengaluru, 2025
+CGPA: 8.7 / 10
+
+CERTIFICATIONS
+Machine Learning Specialization - Coursera, 2024
+SQL for Data Science - Coursera, 2023
+
+ACHIEVEMENTS
+Finalist, Smart India Hackathon 2024 (team of 6)
+Secured 2nd place in the departmental coding contest

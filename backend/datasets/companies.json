@@ -1,0 +1,222 @@
+{
+  "version": "1.0.0",
+  "description": "Company profiles. A company never replaces the role baseline - it modifies it. focus_skills raise (or promote) skills the company screens hardest for, keywords feed the ATS and keyword-similarity stages, and values feed the soft-signal checks.",
+  "companies": [
+    {
+      "id": "amazon",
+      "name": "Amazon",
+      "tagline": "Scale, ownership and measurable customer impact.",
+      "values": ["Customer Obsession", "Ownership", "Bias for Action", "Dive Deep", "Deliver Results"],
+      "focus_skills": [
+        {"skill": "AWS", "boost": 0.3, "promote_to": "required"},
+        {"skill": "System Design", "boost": 0.15},
+        {"skill": "Data Structures", "boost": 0.15},
+        {"skill": "Amazon SageMaker", "boost": 0.2},
+        {"skill": "Amazon S3", "boost": 0.12},
+        {"skill": "Ownership", "boost": 0.2},
+        {"skill": "Customer Obsession", "boost": 0.2},
+        {"skill": "Model Deployment", "boost": 0.12}
+      ],
+      "keywords": ["customer obsession", "ownership", "bias for action", "scalable systems", "measurable impact", "cost efficiency", "dive deep", "operational excellence", "deliver results", "large scale"],
+      "hiring_signals": [
+        "Bullets that quantify impact - Amazon interviews are built around the STAR format and metrics",
+        "Evidence you owned something end to end rather than contributed to it",
+        "Familiarity with AWS services relevant to the role, named explicitly"
+      ],
+      "screen_notes": "Amazon's bar raiser process weights Leadership Principles as heavily as technical depth. Resume bullets that read as team accomplishments without a personal contribution tend to screen poorly.",
+      "interview_focus": ["Leadership Principles (behavioural)", "Data structures & algorithms", "System design at scale", "Role-specific depth"]
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "tagline": "Algorithmic depth and systems that work at planetary scale.",
+      "values": ["Technical Excellence", "Googleyness", "Data-Driven Decisions", "Scale"],
+      "focus_skills": [
+        {"skill": "Algorithms", "boost": 0.25, "promote_to": "required"},
+        {"skill": "Data Structures", "boost": 0.25, "promote_to": "required"},
+        {"skill": "System Design", "boost": 0.2},
+        {"skill": "Google Cloud Platform", "boost": 0.22},
+        {"skill": "BigQuery", "boost": 0.15},
+        {"skill": "Vertex AI", "boost": 0.15},
+        {"skill": "C++", "boost": 0.1},
+        {"skill": "Statistics", "boost": 0.12}
+      ],
+      "keywords": ["complexity analysis", "distributed systems", "large scale", "data-driven", "experimentation", "code quality", "technical depth", "research", "petabyte scale"],
+      "hiring_signals": [
+        "Explicit algorithmic and complexity vocabulary in project descriptions",
+        "Open-source contributions, publications or competitive programming records",
+        "Depth in one area rather than a long shallow tool list"
+      ],
+      "screen_notes": "Google screens heavily on fundamentals. A resume packed with frameworks but thin on data structures, algorithms or systems reasoning often stalls at the recruiter stage.",
+      "interview_focus": ["Data structures & algorithms", "System design", "Googleyness & leadership", "Role-related knowledge"]
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "tagline": "Enterprise-grade engineering, cloud-first, growth mindset.",
+      "values": ["Growth Mindset", "Customer Focus", "Diverse & Inclusive", "One Microsoft"],
+      "focus_skills": [
+        {"skill": "Microsoft Azure", "boost": 0.3, "promote_to": "required"},
+        {"skill": "Azure ML", "boost": 0.18},
+        {"skill": "C#", "boost": 0.15},
+        {"skill": ".NET", "boost": 0.12},
+        {"skill": "System Design", "boost": 0.12},
+        {"skill": "Collaboration", "boost": 0.18},
+        {"skill": "Responsible AI", "boost": 0.15},
+        {"skill": "Testing", "boost": 0.1}
+      ],
+      "keywords": ["growth mindset", "enterprise", "azure", "cross-team collaboration", "customer focus", "accessibility", "responsible ai", "reliability", "inclusive design"],
+      "hiring_signals": [
+        "Evidence of learning new technologies quickly - the growth-mindset signal",
+        "Cross-team collaboration described concretely",
+        "Azure services named where they were genuinely used"
+      ],
+      "screen_notes": "Microsoft values breadth plus collaboration signals. Resumes that show only solo work can read as a partnership risk for enterprise teams.",
+      "interview_focus": ["Coding & problem solving", "System design", "Growth mindset behavioural", "Collaboration scenarios"]
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "tagline": "Move fast on products used by billions, backed by data.",
+      "values": ["Move Fast", "Focus on Impact", "Be Bold", "Build Social Value"],
+      "focus_skills": [
+        {"skill": "Python", "boost": 0.15},
+        {"skill": "Data Structures", "boost": 0.2},
+        {"skill": "System Design", "boost": 0.2},
+        {"skill": "A/B Testing", "boost": 0.2},
+        {"skill": "PyTorch", "boost": 0.2},
+        {"skill": "Recommendation Systems", "boost": 0.22},
+        {"skill": "Big Data", "boost": 0.15},
+        {"skill": "Business Acumen", "boost": 0.12}
+      ],
+      "keywords": ["impact", "move fast", "product velocity", "experimentation", "ranking", "billions of users", "growth", "engagement metrics", "data-informed"],
+      "hiring_signals": [
+        "Impact stated in user or business terms, not just technical output",
+        "Experimentation and metric movement described numerically",
+        "Comfort with ambiguity and fast iteration"
+      ],
+      "screen_notes": "Meta screens for impact per unit time. Bullets that describe tasks rather than outcomes are the most common weakness in candidate resumes.",
+      "interview_focus": ["Coding", "System / product design", "Behavioural (impact & ambiguity)", "Domain depth"]
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "tagline": "Craft, privacy and deep ownership of a small surface done perfectly.",
+      "values": ["Craftsmanship", "Privacy", "Simplicity", "Collaboration Across Disciplines"],
+      "focus_skills": [
+        {"skill": "C++", "boost": 0.2},
+        {"skill": "Swift", "boost": 0.2},
+        {"skill": "Operating Systems", "boost": 0.18},
+        {"skill": "Computer Vision", "boost": 0.15},
+        {"skill": "Security", "boost": 0.2},
+        {"skill": "Testing", "boost": 0.15},
+        {"skill": "Problem Solving", "boost": 0.12},
+        {"skill": "Responsible AI", "boost": 0.1}
+      ],
+      "keywords": ["performance optimisation", "on-device", "privacy", "user experience", "attention to detail", "cross-functional", "hardware software integration", "quality"],
+      "hiring_signals": [
+        "Depth and polish on a small number of projects rather than many shallow ones",
+        "Performance, memory or latency work described concretely",
+        "Privacy-conscious or on-device engineering experience"
+      ],
+      "screen_notes": "Apple hires specialists. A generalist resume with no clearly deepest area is the most common mismatch.",
+      "interview_focus": ["Deep domain expertise", "Coding & debugging", "Design and craft discussion", "Cross-functional collaboration"]
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "tagline": "Senior-heavy teams, high freedom, high responsibility, streaming scale.",
+      "values": ["Freedom & Responsibility", "Candor", "Selflessness", "Judgement"],
+      "focus_skills": [
+        {"skill": "Microservices", "boost": 0.2},
+        {"skill": "Streaming", "boost": 0.22},
+        {"skill": "Kafka", "boost": 0.2},
+        {"skill": "System Design", "boost": 0.22},
+        {"skill": "AWS", "boost": 0.25},
+        {"skill": "Recommendation Systems", "boost": 0.22},
+        {"skill": "Monitoring", "boost": 0.15},
+        {"skill": "Ownership", "boost": 0.22}
+      ],
+      "keywords": ["freedom and responsibility", "high performance", "streaming scale", "resilience", "chaos engineering", "personalisation", "judgement", "context not control"],
+      "hiring_signals": [
+        "Evidence of operating autonomously without heavy process",
+        "Experience at meaningful scale or with resilience engineering",
+        "Strong written communication - Netflix runs on memos"
+      ],
+      "screen_notes": "Netflix hires few, senior people. Early-career resumes need exceptional depth or scale signals to clear the bar.",
+      "interview_focus": ["Deep technical judgement", "Culture memo alignment", "System design & resilience", "Written communication"]
+    },
+    {
+      "id": "ibm",
+      "name": "IBM",
+      "tagline": "Enterprise, hybrid cloud and applied AI for regulated industries.",
+      "values": ["Client Success", "Innovation That Matters", "Trust & Responsibility"],
+      "focus_skills": [
+        {"skill": "Docker", "boost": 0.15},
+        {"skill": "Kubernetes", "boost": 0.2},
+        {"skill": "Java", "boost": 0.15},
+        {"skill": "Responsible AI", "boost": 0.2},
+        {"skill": "Security", "boost": 0.18},
+        {"skill": "Data Quality", "boost": 0.15},
+        {"skill": "Communication", "boost": 0.15},
+        {"skill": "Agile", "boost": 0.12}
+      ],
+      "keywords": ["hybrid cloud", "enterprise clients", "governance", "compliance", "consulting", "domain solutions", "trustworthy ai", "watsonx", "client outcomes"],
+      "hiring_signals": [
+        "Client or stakeholder-facing experience described explicitly",
+        "Certifications carry more weight here than at most product companies",
+        "Governance, compliance or reliability awareness"
+      ],
+      "screen_notes": "IBM roles are often client-facing. Consulting, documentation and certification signals move the needle more than at pure product companies.",
+      "interview_focus": ["Technical fundamentals", "Client scenario handling", "Domain solutioning", "Behavioural"]
+    },
+    {
+      "id": "adobe",
+      "name": "Adobe",
+      "tagline": "Creative tooling, applied AI and pixel-level product craft.",
+      "values": ["Genuine", "Exceptional", "Innovative", "Involved"],
+      "focus_skills": [
+        {"skill": "Computer Vision", "boost": 0.22},
+        {"skill": "Deep Learning", "boost": 0.18},
+        {"skill": "JavaScript", "boost": 0.15},
+        {"skill": "C++", "boost": 0.15},
+        {"skill": "React", "boost": 0.12},
+        {"skill": "Model Deployment", "boost": 0.12},
+        {"skill": "Collaboration", "boost": 0.12},
+        {"skill": "LLMs", "boost": 0.15}
+      ],
+      "keywords": ["creative workflows", "generative ai", "user delight", "performance", "design collaboration", "content intelligence", "product craft"],
+      "hiring_signals": [
+        "Portfolio-quality projects with visible output",
+        "Generative or vision work applied to real creative problems",
+        "Close collaboration with design described concretely"
+      ],
+      "screen_notes": "Adobe likes evidence you can make something people enjoy using. Screenshots, demos and links carry real weight.",
+      "interview_focus": ["Coding", "Applied ML / graphics depth", "Product sense", "Collaboration"]
+    },
+    {
+      "id": "nvidia",
+      "name": "NVIDIA",
+      "tagline": "Accelerated computing - performance is the product.",
+      "values": ["Intellectual Honesty", "Speed & Agility", "Excellence", "One Team"],
+      "focus_skills": [
+        {"skill": "CUDA", "boost": 0.3, "promote_to": "required"},
+        {"skill": "C++", "boost": 0.25, "promote_to": "required"},
+        {"skill": "Deep Learning", "boost": 0.22},
+        {"skill": "PyTorch", "boost": 0.2},
+        {"skill": "Operating Systems", "boost": 0.15},
+        {"skill": "Model Deployment", "boost": 0.15},
+        {"skill": "Linux", "boost": 0.15},
+        {"skill": "Algorithms", "boost": 0.15}
+      ],
+      "keywords": ["gpu acceleration", "kernel optimisation", "throughput", "latency", "parallel computing", "memory bandwidth", "inference optimisation", "benchmarking"],
+      "hiring_signals": [
+        "Measured speedups and benchmark numbers",
+        "Low-level performance work in C++, CUDA or Triton",
+        "Understanding of hardware constraints behind ML workloads"
+      ],
+      "screen_notes": "NVIDIA screens for performance engineering. ML resumes with no systems or optimisation content are a common mismatch even when the ML is strong.",
+      "interview_focus": ["C++ / CUDA depth", "Performance optimisation", "ML systems", "Debugging"]
+    }
+  ]
+}

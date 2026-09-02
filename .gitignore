@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# Application data
+backend/storage/
+*.db
+*.sqlite3
+
+# Environment
+.env
+
+# Generated sample binaries
+samples/*.pdf
+samples/*.docx
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

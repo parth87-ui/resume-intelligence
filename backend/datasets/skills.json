@@ -1,0 +1,1811 @@
+{
+  "version": "1.0.0",
+  "description": "Canonical skill ontology. Every skill the platform can detect, group, score and teach lives here. Add a new object to extend detection - no code change required.",
+  "categories": {
+    "language": "Programming Languages",
+    "framework": "Frameworks",
+    "library": "Libraries",
+    "tool": "Tools",
+    "cloud": "Cloud Platforms & Services",
+    "database": "Databases & Storage",
+    "ml": "Machine Learning & AI",
+    "data": "Data Engineering & Analytics",
+    "devops": "DevOps, MLOps & Infrastructure",
+    "cs": "Computer Science Fundamentals",
+    "soft": "Soft Skills"
+  },
+  "skills": [
+    {
+      "name": "Python",
+      "category": "language",
+      "aliases": [
+        "python3",
+        "py"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "Pandas",
+        "NumPy",
+        "FastAPI"
+      ]
+    },
+    {
+      "name": "Java",
+      "category": "language",
+      "aliases": [
+        "core java",
+        "java se"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "Spring Boot"
+      ]
+    },
+    {
+      "name": "C++",
+      "category": "language",
+      "aliases": [
+        "cpp",
+        "c/c++",
+        "c plus plus"
+      ],
+      "learn_weeks": 10,
+      "related": [
+        "CUDA"
+      ]
+    },
+    {
+      "name": "C",
+      "category": "language",
+      "aliases": [],
+      "learn_weeks": 8,
+      "related": [
+        "C++"
+      ]
+    },
+    {
+      "name": "C#",
+      "category": "language",
+      "aliases": [
+        "csharp",
+        "c sharp"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        ".NET"
+      ]
+    },
+    {
+      "name": "Go",
+      "category": "language",
+      "aliases": [
+        "golang"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Rust",
+      "category": "language",
+      "aliases": [],
+      "learn_weeks": 10,
+      "related": []
+    },
+    {
+      "name": "JavaScript",
+      "category": "language",
+      "aliases": [
+        "js",
+        "es6",
+        "ecmascript"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "name": "TypeScript",
+      "category": "language",
+      "aliases": [
+        "ts"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "React",
+        "Node.js"
+      ]
+    },
+    {
+      "name": "SQL",
+      "category": "language",
+      "aliases": [
+        "structured query language",
+        "t-sql",
+        "pl/sql",
+        "ansi sql"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "PostgreSQL",
+        "Data Modeling"
+      ]
+    },
+    {
+      "name": "Scala",
+      "category": "language",
+      "aliases": [],
+      "learn_weeks": 10,
+      "related": [
+        "Apache Spark"
+      ]
+    },
+    {
+      "name": "R",
+      "category": "language",
+      "aliases": [
+        "r language",
+        "rstats"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Statistics"
+      ]
+    },
+    {
+      "name": "Kotlin",
+      "category": "language",
+      "aliases": [],
+      "learn_weeks": 6,
+      "related": []
+    },
+    {
+      "name": "Swift",
+      "category": "language",
+      "aliases": [],
+      "learn_weeks": 8,
+      "related": []
+    },
+    {
+      "name": "Ruby",
+      "category": "language",
+      "aliases": [],
+      "learn_weeks": 6,
+      "related": [
+        "Ruby on Rails"
+      ]
+    },
+    {
+      "name": "PHP",
+      "category": "language",
+      "aliases": [],
+      "learn_weeks": 5,
+      "related": [
+        "Laravel"
+      ]
+    },
+    {
+      "name": "Bash",
+      "category": "language",
+      "aliases": [
+        "shell scripting",
+        "shell",
+        "zsh"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Linux"
+      ]
+    },
+    {
+      "name": "MATLAB",
+      "category": "language",
+      "aliases": [],
+      "learn_weeks": 4,
+      "related": []
+    },
+    {
+      "name": "React",
+      "category": "framework",
+      "aliases": [
+        "react.js",
+        "reactjs"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "JavaScript"
+      ]
+    },
+    {
+      "name": "Next.js",
+      "category": "framework",
+      "aliases": [
+        "nextjs"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "React"
+      ]
+    },
+    {
+      "name": "Angular",
+      "category": "framework",
+      "aliases": [
+        "angular.js",
+        "angularjs"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "Vue.js",
+      "category": "framework",
+      "aliases": [
+        "vue",
+        "vuejs"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "JavaScript"
+      ]
+    },
+    {
+      "name": "Node.js",
+      "category": "framework",
+      "aliases": [
+        "nodejs",
+        "node"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Express.js"
+      ]
+    },
+    {
+      "name": "Express.js",
+      "category": "framework",
+      "aliases": [
+        "express",
+        "expressjs"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Node.js"
+      ]
+    },
+    {
+      "name": "Django",
+      "category": "framework",
+      "aliases": [],
+      "learn_weeks": 6,
+      "related": [
+        "Python",
+        "REST APIs"
+      ]
+    },
+    {
+      "name": "Flask",
+      "category": "framework",
+      "aliases": [],
+      "learn_weeks": 3,
+      "related": [
+        "Python",
+        "REST APIs"
+      ]
+    },
+    {
+      "name": "FastAPI",
+      "category": "framework",
+      "aliases": [
+        "fast api"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Python",
+        "REST APIs"
+      ]
+    },
+    {
+      "name": "Spring Boot",
+      "category": "framework",
+      "aliases": [
+        "spring",
+        "springboot"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "Java",
+        "Microservices"
+      ]
+    },
+    {
+      "name": ".NET",
+      "category": "framework",
+      "aliases": [
+        "dotnet",
+        "asp.net",
+        ".net core"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "C#"
+      ]
+    },
+    {
+      "name": "Ruby on Rails",
+      "category": "framework",
+      "aliases": [
+        "rails"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "Ruby"
+      ]
+    },
+    {
+      "name": "Laravel",
+      "category": "framework",
+      "aliases": [],
+      "learn_weeks": 5,
+      "related": [
+        "PHP"
+      ]
+    },
+    {
+      "name": "React Native",
+      "category": "framework",
+      "aliases": [
+        "reactnative"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "React"
+      ]
+    },
+    {
+      "name": "Tailwind CSS",
+      "category": "framework",
+      "aliases": [
+        "tailwind",
+        "tailwindcss"
+      ],
+      "learn_weeks": 2,
+      "related": []
+    },
+    {
+      "name": "TensorFlow",
+      "category": "library",
+      "aliases": [
+        "tf2",
+        "keras"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "Deep Learning"
+      ]
+    },
+    {
+      "name": "PyTorch",
+      "category": "library",
+      "aliases": [
+        "torch",
+        "pytorch lightning"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "Deep Learning"
+      ]
+    },
+    {
+      "name": "Scikit-learn",
+      "category": "library",
+      "aliases": [
+        "sklearn",
+        "scikit learn"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Machine Learning"
+      ]
+    },
+    {
+      "name": "Pandas",
+      "category": "library",
+      "aliases": [
+        "pandas dataframe"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Python",
+        "Data Analysis"
+      ]
+    },
+    {
+      "name": "NumPy",
+      "category": "library",
+      "aliases": [
+        "numpy"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Python"
+      ]
+    },
+    {
+      "name": "SciPy",
+      "category": "library",
+      "aliases": [],
+      "learn_weeks": 3,
+      "related": [
+        "NumPy"
+      ]
+    },
+    {
+      "name": "Matplotlib",
+      "category": "library",
+      "aliases": [
+        "pyplot"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Data Visualization"
+      ]
+    },
+    {
+      "name": "Seaborn",
+      "category": "library",
+      "aliases": [],
+      "learn_weeks": 1,
+      "related": [
+        "Matplotlib"
+      ]
+    },
+    {
+      "name": "Plotly",
+      "category": "library",
+      "aliases": [
+        "plotly dash"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Data Visualization"
+      ]
+    },
+    {
+      "name": "spaCy",
+      "category": "library",
+      "aliases": [
+        "spacy"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "NLP"
+      ]
+    },
+    {
+      "name": "NLTK",
+      "category": "library",
+      "aliases": [
+        "natural language toolkit"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "NLP"
+      ]
+    },
+    {
+      "name": "Hugging Face Transformers",
+      "category": "library",
+      "aliases": [
+        "huggingface",
+        "hugging face",
+        "transformers library"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "NLP",
+        "LLMs"
+      ]
+    },
+    {
+      "name": "XGBoost",
+      "category": "library",
+      "aliases": [
+        "lightgbm",
+        "catboost",
+        "gradient boosting"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Machine Learning"
+      ]
+    },
+    {
+      "name": "OpenCV",
+      "category": "library",
+      "aliases": [
+        "cv2"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Computer Vision"
+      ]
+    },
+    {
+      "name": "LangChain",
+      "category": "library",
+      "aliases": [
+        "langgraph",
+        "llamaindex",
+        "llama index"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "LLMs"
+      ],
+      "emerging": true
+    },
+    {
+      "name": "Streamlit",
+      "category": "library",
+      "aliases": [
+        "gradio"
+      ],
+      "learn_weeks": 1,
+      "related": [
+        "Python"
+      ]
+    },
+    {
+      "name": "Git",
+      "category": "tool",
+      "aliases": [
+        "github",
+        "gitlab",
+        "version control",
+        "bitbucket"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "CI/CD"
+      ]
+    },
+    {
+      "name": "Docker",
+      "category": "tool",
+      "aliases": [
+        "containerization",
+        "containerized",
+        "dockerfile"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Kubernetes"
+      ]
+    },
+    {
+      "name": "Kubernetes",
+      "category": "tool",
+      "aliases": [
+        "k8s",
+        "eks",
+        "gke"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "Docker"
+      ]
+    },
+    {
+      "name": "Jenkins",
+      "category": "tool",
+      "aliases": [
+        "jenkinsfile"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "CI/CD"
+      ]
+    },
+    {
+      "name": "Jira",
+      "category": "tool",
+      "aliases": [
+        "confluence"
+      ],
+      "learn_weeks": 1,
+      "related": [
+        "Agile"
+      ]
+    },
+    {
+      "name": "Postman",
+      "category": "tool",
+      "aliases": [],
+      "learn_weeks": 1,
+      "related": [
+        "REST APIs"
+      ]
+    },
+    {
+      "name": "Jupyter",
+      "category": "tool",
+      "aliases": [
+        "jupyter notebook",
+        "google colab",
+        "colab"
+      ],
+      "learn_weeks": 1,
+      "related": [
+        "Python"
+      ]
+    },
+    {
+      "name": "Tableau",
+      "category": "tool",
+      "aliases": [],
+      "learn_weeks": 4,
+      "related": [
+        "Data Visualization"
+      ]
+    },
+    {
+      "name": "Power BI",
+      "category": "tool",
+      "aliases": [
+        "powerbi",
+        "microsoft power bi"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Data Visualization"
+      ]
+    },
+    {
+      "name": "Excel",
+      "category": "tool",
+      "aliases": [
+        "microsoft excel",
+        "advanced excel",
+        "pivot tables"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Data Analysis"
+      ]
+    },
+    {
+      "name": "Looker",
+      "category": "tool",
+      "aliases": [
+        "looker studio",
+        "data studio"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Data Visualization"
+      ]
+    },
+    {
+      "name": "MLflow",
+      "category": "tool",
+      "aliases": [
+        "ml flow",
+        "weights & biases",
+        "wandb",
+        "experiment tracking"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "MLOps"
+      ]
+    },
+    {
+      "name": "Airflow",
+      "category": "tool",
+      "aliases": [
+        "apache airflow",
+        "prefect",
+        "dagster"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Data Pipelines"
+      ]
+    },
+    {
+      "name": "Linux",
+      "category": "tool",
+      "aliases": [
+        "unix",
+        "ubuntu"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Bash"
+      ]
+    },
+    {
+      "name": "Figma",
+      "category": "tool",
+      "aliases": [],
+      "learn_weeks": 2,
+      "related": []
+    },
+    {
+      "name": "AWS",
+      "category": "cloud",
+      "aliases": [
+        "amazon web services",
+        "aws cloud"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "Amazon EC2",
+        "Amazon S3",
+        "AWS Lambda"
+      ]
+    },
+    {
+      "name": "Amazon S3",
+      "category": "cloud",
+      "aliases": [
+        "s3 bucket",
+        "s3"
+      ],
+      "learn_weeks": 1,
+      "related": [
+        "AWS"
+      ]
+    },
+    {
+      "name": "Amazon EC2",
+      "category": "cloud",
+      "aliases": [
+        "ec2"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "AWS"
+      ]
+    },
+    {
+      "name": "AWS Lambda",
+      "category": "cloud",
+      "aliases": [
+        "lambda function",
+        "lambda functions"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "AWS",
+        "Serverless"
+      ]
+    },
+    {
+      "name": "Amazon SageMaker",
+      "category": "cloud",
+      "aliases": [
+        "sagemaker"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "AWS",
+        "MLOps"
+      ]
+    },
+    {
+      "name": "AWS Glue",
+      "category": "cloud",
+      "aliases": [
+        "glue etl"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "AWS",
+        "ETL"
+      ]
+    },
+    {
+      "name": "Amazon Redshift",
+      "category": "cloud",
+      "aliases": [
+        "redshift"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Data Warehousing"
+      ]
+    },
+    {
+      "name": "Amazon DynamoDB",
+      "category": "cloud",
+      "aliases": [
+        "dynamodb"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "NoSQL"
+      ]
+    },
+    {
+      "name": "Google Cloud Platform",
+      "category": "cloud",
+      "aliases": [
+        "gcp",
+        "google cloud"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "BigQuery"
+      ]
+    },
+    {
+      "name": "BigQuery",
+      "category": "cloud",
+      "aliases": [
+        "google bigquery"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Google Cloud Platform",
+        "SQL"
+      ]
+    },
+    {
+      "name": "Vertex AI",
+      "category": "cloud",
+      "aliases": [
+        "google vertex ai"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Google Cloud Platform",
+        "MLOps"
+      ]
+    },
+    {
+      "name": "Microsoft Azure",
+      "category": "cloud",
+      "aliases": [
+        "azure"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "Azure ML"
+      ]
+    },
+    {
+      "name": "Azure ML",
+      "category": "cloud",
+      "aliases": [
+        "azure machine learning",
+        "azure ml studio"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Microsoft Azure",
+        "MLOps"
+      ]
+    },
+    {
+      "name": "Azure Data Factory",
+      "category": "cloud",
+      "aliases": [
+        "adf"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "ETL"
+      ]
+    },
+    {
+      "name": "Databricks",
+      "category": "cloud",
+      "aliases": [
+        "delta lake"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Apache Spark"
+      ]
+    },
+    {
+      "name": "Snowflake",
+      "category": "cloud",
+      "aliases": [],
+      "learn_weeks": 4,
+      "related": [
+        "Data Warehousing"
+      ]
+    },
+    {
+      "name": "Serverless",
+      "category": "cloud",
+      "aliases": [
+        "serverless architecture",
+        "faas"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "AWS Lambda"
+      ]
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "database",
+      "aliases": [
+        "postgres",
+        "psql"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "SQL"
+      ]
+    },
+    {
+      "name": "MySQL",
+      "category": "database",
+      "aliases": [
+        "mariadb"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "SQL"
+      ]
+    },
+    {
+      "name": "MongoDB",
+      "category": "database",
+      "aliases": [
+        "mongo"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "NoSQL"
+      ]
+    },
+    {
+      "name": "Redis",
+      "category": "database",
+      "aliases": [
+        "memcached"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Caching"
+      ]
+    },
+    {
+      "name": "Elasticsearch",
+      "category": "database",
+      "aliases": [
+        "elastic search",
+        "opensearch"
+      ],
+      "learn_weeks": 4,
+      "related": []
+    },
+    {
+      "name": "Cassandra",
+      "category": "database",
+      "aliases": [
+        "apache cassandra"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "NoSQL"
+      ]
+    },
+    {
+      "name": "NoSQL",
+      "category": "database",
+      "aliases": [
+        "non-relational database"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "MongoDB"
+      ]
+    },
+    {
+      "name": "Vector Databases",
+      "category": "database",
+      "aliases": [
+        "pinecone",
+        "faiss",
+        "chromadb",
+        "weaviate",
+        "qdrant",
+        "vector store",
+        "vector search"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "RAG"
+      ],
+      "emerging": true
+    },
+    {
+      "name": "Data Warehousing",
+      "category": "database",
+      "aliases": [
+        "data warehouse",
+        "dimensional modeling",
+        "star schema"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Snowflake"
+      ]
+    },
+    {
+      "name": "Data Modeling",
+      "category": "database",
+      "aliases": [
+        "schema design",
+        "database design"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "SQL"
+      ]
+    },
+    {
+      "name": "Machine Learning",
+      "category": "ml",
+      "aliases": [
+        "supervised learning",
+        "unsupervised learning",
+        "predictive modeling",
+        "ml model",
+        "ml models"
+      ],
+      "learn_weeks": 10,
+      "related": [
+        "Scikit-learn"
+      ]
+    },
+    {
+      "name": "Deep Learning",
+      "category": "ml",
+      "aliases": [
+        "neural network",
+        "neural networks",
+        "cnn",
+        "rnn",
+        "lstm"
+      ],
+      "learn_weeks": 10,
+      "related": [
+        "PyTorch",
+        "TensorFlow"
+      ]
+    },
+    {
+      "name": "NLP",
+      "category": "ml",
+      "aliases": [
+        "natural language processing",
+        "text mining",
+        "text classification",
+        "sentiment analysis"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "spaCy",
+        "Transformers"
+      ]
+    },
+    {
+      "name": "Computer Vision",
+      "category": "ml",
+      "aliases": [
+        "image processing",
+        "image classification",
+        "object detection"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "OpenCV"
+      ]
+    },
+    {
+      "name": "Transformers",
+      "category": "ml",
+      "aliases": [
+        "attention mechanism",
+        "bert",
+        "encoder-decoder"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "NLP"
+      ]
+    },
+    {
+      "name": "LLMs",
+      "category": "ml",
+      "aliases": [
+        "large language model",
+        "large language models",
+        "generative ai",
+        "genai",
+        "prompt engineering"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "RAG"
+      ],
+      "emerging": true
+    },
+    {
+      "name": "RAG",
+      "category": "ml",
+      "aliases": [
+        "retrieval augmented generation",
+        "retrieval-augmented generation"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Vector Databases",
+        "LLMs"
+      ],
+      "emerging": true
+    },
+    {
+      "name": "Model Fine-Tuning",
+      "category": "ml",
+      "aliases": [
+        "fine tuning",
+        "fine-tuning",
+        "finetuning",
+        "lora",
+        "peft",
+        "transfer learning"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "LLMs"
+      ],
+      "emerging": true
+    },
+    {
+      "name": "Recommendation Systems",
+      "category": "ml",
+      "aliases": [
+        "recommender system",
+        "recommender systems",
+        "collaborative filtering",
+        "ranking system"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "Machine Learning"
+      ]
+    },
+    {
+      "name": "Reinforcement Learning",
+      "category": "ml",
+      "aliases": [
+        "q-learning"
+      ],
+      "learn_weeks": 10,
+      "related": [
+        "Deep Learning"
+      ]
+    },
+    {
+      "name": "Feature Engineering",
+      "category": "ml",
+      "aliases": [
+        "feature extraction",
+        "feature selection"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Machine Learning"
+      ]
+    },
+    {
+      "name": "Model Evaluation",
+      "category": "ml",
+      "aliases": [
+        "cross validation",
+        "cross-validation",
+        "hyperparameter tuning",
+        "model validation",
+        "f1 score",
+        "roc auc"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Machine Learning"
+      ]
+    },
+    {
+      "name": "Model Deployment",
+      "category": "ml",
+      "aliases": [
+        "model serving",
+        "inference api",
+        "productionizing models",
+        "model inference",
+        "deployed a model"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "MLOps",
+        "Docker"
+      ]
+    },
+    {
+      "name": "Statistics",
+      "category": "ml",
+      "aliases": [
+        "statistical analysis",
+        "hypothesis testing",
+        "probability",
+        "regression analysis"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "A/B Testing"
+      ]
+    },
+    {
+      "name": "A/B Testing",
+      "category": "ml",
+      "aliases": [
+        "ab testing",
+        "a/b test",
+        "experimentation",
+        "experimental design"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Statistics"
+      ]
+    },
+    {
+      "name": "Time Series Analysis",
+      "category": "ml",
+      "aliases": [
+        "forecasting",
+        "arima",
+        "time series"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Statistics"
+      ]
+    },
+    {
+      "name": "Responsible AI",
+      "category": "ml",
+      "aliases": [
+        "ai ethics",
+        "model fairness",
+        "bias mitigation",
+        "explainable ai",
+        "interpretability"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Machine Learning"
+      ],
+      "emerging": true
+    },
+    {
+      "name": "CUDA",
+      "category": "ml",
+      "aliases": [
+        "gpu programming",
+        "cudnn",
+        "tensorrt",
+        "gpu acceleration"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "C++"
+      ]
+    },
+    {
+      "name": "Data Analysis",
+      "category": "data",
+      "aliases": [
+        "exploratory data analysis",
+        "data exploration",
+        "analytics"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Pandas"
+      ]
+    },
+    {
+      "name": "Data Visualization",
+      "category": "data",
+      "aliases": [
+        "dashboards",
+        "dashboarding",
+        "data storytelling",
+        "reporting"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Tableau"
+      ]
+    },
+    {
+      "name": "ETL",
+      "category": "data",
+      "aliases": [
+        "elt",
+        "extract transform load",
+        "data ingestion"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Airflow"
+      ]
+    },
+    {
+      "name": "Data Pipelines",
+      "category": "data",
+      "aliases": [
+        "data pipeline",
+        "batch processing",
+        "workflow orchestration"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Airflow",
+        "ETL"
+      ]
+    },
+    {
+      "name": "Apache Spark",
+      "category": "data",
+      "aliases": [
+        "pyspark",
+        "spark"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "Databricks",
+        "Big Data"
+      ]
+    },
+    {
+      "name": "Kafka",
+      "category": "data",
+      "aliases": [
+        "apache kafka",
+        "event streaming",
+        "kinesis",
+        "pub/sub"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Streaming"
+      ]
+    },
+    {
+      "name": "Big Data",
+      "category": "data",
+      "aliases": [
+        "hadoop",
+        "hdfs",
+        "mapreduce",
+        "distributed data"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "Apache Spark"
+      ]
+    },
+    {
+      "name": "Streaming",
+      "category": "data",
+      "aliases": [
+        "real-time processing",
+        "stream processing",
+        "apache flink"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Kafka"
+      ]
+    },
+    {
+      "name": "Data Quality",
+      "category": "data",
+      "aliases": [
+        "data validation",
+        "data governance",
+        "great expectations"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Data Pipelines"
+      ]
+    },
+    {
+      "name": "dbt",
+      "category": "data",
+      "aliases": [
+        "data build tool"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "SQL",
+        "Data Warehousing"
+      ]
+    },
+    {
+      "name": "CI/CD",
+      "category": "devops",
+      "aliases": [
+        "continuous integration",
+        "continuous deployment",
+        "github actions",
+        "gitlab ci",
+        "build pipeline"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Jenkins",
+        "Docker"
+      ]
+    },
+    {
+      "name": "MLOps",
+      "category": "devops",
+      "aliases": [
+        "ml ops",
+        "machine learning operations",
+        "model monitoring",
+        "model registry",
+        "ml lifecycle"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "MLflow",
+        "Docker"
+      ],
+      "emerging": true
+    },
+    {
+      "name": "Terraform",
+      "category": "devops",
+      "aliases": [
+        "infrastructure as code",
+        "cloudformation",
+        "pulumi"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "AWS"
+      ]
+    },
+    {
+      "name": "Monitoring",
+      "category": "devops",
+      "aliases": [
+        "observability",
+        "prometheus",
+        "grafana",
+        "datadog",
+        "cloudwatch"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "DevOps"
+      ]
+    },
+    {
+      "name": "DevOps",
+      "category": "devops",
+      "aliases": [
+        "site reliability engineering",
+        "sre"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "CI/CD"
+      ]
+    },
+    {
+      "name": "Microservices",
+      "category": "devops",
+      "aliases": [
+        "microservice architecture",
+        "service oriented architecture"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Docker",
+        "REST APIs"
+      ]
+    },
+    {
+      "name": "Load Balancing",
+      "category": "devops",
+      "aliases": [
+        "autoscaling",
+        "auto-scaling",
+        "high availability",
+        "fault tolerance"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "System Design"
+      ]
+    },
+    {
+      "name": "Data Structures",
+      "category": "cs",
+      "aliases": [
+        "dsa",
+        "data structures and algorithms"
+      ],
+      "learn_weeks": 10,
+      "related": [
+        "Algorithms"
+      ]
+    },
+    {
+      "name": "Algorithms",
+      "category": "cs",
+      "aliases": [
+        "algorithm design",
+        "complexity analysis",
+        "dynamic programming"
+      ],
+      "learn_weeks": 10,
+      "related": [
+        "Data Structures"
+      ]
+    },
+    {
+      "name": "System Design",
+      "category": "cs",
+      "aliases": [
+        "distributed systems",
+        "scalable systems",
+        "scalable system",
+        "architecture design",
+        "scalability"
+      ],
+      "learn_weeks": 8,
+      "related": [
+        "Microservices"
+      ]
+    },
+    {
+      "name": "Object-Oriented Programming",
+      "category": "cs",
+      "aliases": [
+        "oop",
+        "object oriented design",
+        "design patterns",
+        "solid principles"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Java"
+      ]
+    },
+    {
+      "name": "REST APIs",
+      "category": "cs",
+      "aliases": [
+        "rest api",
+        "restful",
+        "api development",
+        "graphql",
+        "grpc"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "FastAPI"
+      ]
+    },
+    {
+      "name": "Operating Systems",
+      "category": "cs",
+      "aliases": [
+        "concurrency",
+        "multithreading",
+        "process management"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "Linux"
+      ]
+    },
+    {
+      "name": "Computer Networks",
+      "category": "cs",
+      "aliases": [
+        "networking",
+        "tcp/ip",
+        "http protocol"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "Operating Systems"
+      ]
+    },
+    {
+      "name": "Testing",
+      "category": "cs",
+      "aliases": [
+        "unit testing",
+        "integration testing",
+        "pytest",
+        "test driven development",
+        "junit"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "CI/CD"
+      ]
+    },
+    {
+      "name": "Security",
+      "category": "cs",
+      "aliases": [
+        "application security",
+        "authentication",
+        "oauth",
+        "encryption",
+        "cybersecurity"
+      ],
+      "learn_weeks": 5,
+      "related": [
+        "REST APIs"
+      ]
+    },
+    {
+      "name": "Caching",
+      "category": "cs",
+      "aliases": [
+        "cache strategy",
+        "cdn"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Redis"
+      ]
+    },
+    {
+      "name": "Agile",
+      "category": "cs",
+      "aliases": [
+        "scrum",
+        "kanban",
+        "sprint planning"
+      ],
+      "learn_weeks": 2,
+      "related": [
+        "Jira"
+      ]
+    },
+    {
+      "name": "Communication",
+      "category": "soft",
+      "aliases": [
+        "documented",
+        "presentation skills",
+        "presented to",
+        "stakeholder",
+        "stakeholder communication",
+        "written communication",
+        "wrote design doc"
+      ],
+      "learn_weeks": 4,
+      "related": [
+        "Collaboration"
+      ]
+    },
+    {
+      "name": "Collaboration",
+      "category": "soft",
+      "aliases": [
+        "collaborated",
+        "cross functional",
+        "cross-functional",
+        "partnered with",
+        "teamwork",
+        "worked with product"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Communication"
+      ]
+    },
+    {
+      "name": "Problem Solving",
+      "category": "soft",
+      "aliases": [
+        "analytical thinking",
+        "critical thinking",
+        "debugged",
+        "diagnosed",
+        "root cause",
+        "troubleshooting"
+      ],
+      "learn_weeks": 4,
+      "related": []
+    },
+    {
+      "name": "Ownership",
+      "category": "soft",
+      "aliases": [
+        "accountability",
+        "bias for action",
+        "drove end-to-end",
+        "end-to-end ownership",
+        "owned",
+        "self-driven",
+        "took ownership"
+      ],
+      "learn_weeks": 3,
+      "related": [
+        "Leadership"
+      ]
+    },
+    {
+      "name": "Leadership",
+      "category": "soft",
+      "aliases": [
+        "coached",
+        "led",
+        "led a team",
+        "mentoring",
+        "mentorship",
+        "supervised",
+        "team lead"
+      ],
+      "learn_weeks": 6,
+      "related": [
+        "Ownership"
+      ]
+    },
+    {
+      "name": "Customer Obsession",
+      "category": "soft",
+      "aliases": [
+        "customer centric",
+        "customer focus",
+        "customer impact",
+        "end user",
+        "user impact",
+        "user-centric"
+      ],
+      "learn_weeks": 3,
+      "related": []
+    },
+    {
+      "name": "Business Acumen",
+      "category": "soft",
+      "aliases": [
+        "business impact",
+        "cost savings",
+        "domain knowledge",
+        "product sense",
+        "revenue",
+        "roi"
+      ],
+      "learn_weeks": 5,
+      "related": []
+    }
+  ]
+}

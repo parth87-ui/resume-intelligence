@@ -1,0 +1,29 @@
+# Normalise line endings. Without this, files committed from Windows carry CRLF
+# into the repository, and a CRLF shell script fails on Linux with a confusing
+# "bad interpreter" or syntax error - which would break the Netlify build and
+# the Docker image.
+* text=auto eol=lf
+
+# Files that must be LF no matter what, because Linux executes them.
+*.sh text eol=lf
+Dockerfile text eol=lf
+Procfile text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+
+# Source and config: LF everywhere for consistent diffs.
+*.py text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+
+# Binary - never touch these.
+*.png binary
+*.jpg binary
+*.pdf binary
+*.docx binary
+*.ico binary

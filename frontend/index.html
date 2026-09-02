@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="AI-powered company-specific resume optimisation and career intelligence: explainable compatibility scoring, skill-gap analysis, ATS review, truthful rewrite suggestions and a project-backed learning roadmap."
+    />
+    <title>Resume Intelligence — Company-Specific Resume Analysis</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%236366f1'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='16' font-weight='700' fill='%23fff' text-anchor='middle'%3ERI%3C/text%3E%3C/svg%3E" />
+    <script>
+      // Applied before the stylesheets paint so a dark-theme user never sees a
+      // flash of the light palette. The app module re-applies this on boot.
+      try {
+        if (localStorage.getItem('resume-intelligence.theme') === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {
+        /* storage unavailable - the default light theme applies */
+      }
+    </script>
+    <link rel="stylesheet" href="/src/styles/design-system.css?v=1.2.0" />
+    <link rel="stylesheet" href="/src/styles/dashboard.css?v=1.2.0" />
+  </head>
+  <body>
+    <div id="app">
+      <div style="display: grid; place-items: center; min-height: 100vh">
+        <div style="text-align: center">
+          <div class="spinner" style="margin: 0 auto 14px"></div>
+          <p class="small muted">Starting the analysis engine…</p>
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      <div style="padding: 40px; max-width: 640px; margin: 0 auto">
+        <h1>JavaScript is required</h1>
+        <p class="muted">
+          This dashboard renders its charts and analysis views in the browser. Enable JavaScript, or
+          use the API directly at <a href="/docs">/docs</a>.
+        </p>
+      </div>
+    </noscript>
+
+    <!-- Deploy-time API location; overwritten by the Netlify build. Plain
+         script (not a module) so it runs before the app bootstraps. -->
+    <script src="/config.js?v=1.2.0"></script>
+    <script type="module" src="/src/app.js?v=1.2.0"></script>
+  </body>
+</html>

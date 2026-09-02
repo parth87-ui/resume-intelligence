@@ -1,0 +1,260 @@
+{
+  "version": "1.0.0",
+  "description": "Curated company x role requirement sets. These are optional refinements layered on top of (role baseline + company profile). Any combination without an entry here is still fully supported - it is composed from the role and company files.",
+  "overrides": [
+    {
+      "company": "amazon",
+      "role": "machine-learning-engineer",
+      "extra_required": [
+        {"skill": "AWS", "importance": 0.95},
+        {"skill": "Amazon SageMaker", "importance": 0.85},
+        {"skill": "Docker", "importance": 0.85},
+        {"skill": "MLOps", "importance": 0.85}
+      ],
+      "extra_preferred": [
+        {"skill": "Amazon S3", "importance": 0.7},
+        {"skill": "AWS Lambda", "importance": 0.6},
+        {"skill": "Apache Spark", "importance": 0.65},
+        {"skill": "Monitoring", "importance": 0.6}
+      ],
+      "keywords": ["model deployment", "sagemaker pipelines", "scalable systems", "data pipelines", "cost per inference", "customer impact", "production ml", "a/b testing at scale"],
+      "responsibilities": [
+        "Own ML models end to end from data preparation through production monitoring on AWS",
+        "Reduce inference cost and latency for high-traffic services",
+        "Partner with science and engineering teams to launch models that move customer metrics"
+      ],
+      "notes": "Amazon ML Engineer screens combine ML depth with production engineering. Cloud deployment evidence is the single most common gap for candidates from an academic or notebook-only background."
+    },
+    {
+      "company": "amazon",
+      "role": "software-engineer",
+      "extra_required": [
+        {"skill": "Data Structures", "importance": 1.0},
+        {"skill": "System Design", "importance": 0.9},
+        {"skill": "AWS", "importance": 0.8}
+      ],
+      "extra_preferred": [
+        {"skill": "Java", "importance": 0.75},
+        {"skill": "Microservices", "importance": 0.7},
+        {"skill": "Monitoring", "importance": 0.6}
+      ],
+      "keywords": ["ownership", "operational excellence", "on-call", "scalable services", "customer obsession", "cost efficiency", "design document"],
+      "responsibilities": [
+        "Design and operate services that serve high request volumes reliably",
+        "Participate in on-call and drive operational improvements",
+        "Write design documents and take features from proposal to launch"
+      ],
+      "notes": "SDE loops weight Leadership Principles heavily. Quantified, first-person ownership statements are what the bar raiser looks for on the resume."
+    },
+    {
+      "company": "amazon",
+      "role": "data-engineer",
+      "extra_required": [
+        {"skill": "AWS", "importance": 0.92},
+        {"skill": "Amazon Redshift", "importance": 0.75},
+        {"skill": "AWS Glue", "importance": 0.7}
+      ],
+      "extra_preferred": [
+        {"skill": "Apache Spark", "importance": 0.75},
+        {"skill": "Amazon S3", "importance": 0.7},
+        {"skill": "Airflow", "importance": 0.7}
+      ],
+      "keywords": ["data lake", "petabyte scale", "sla", "cost optimisation", "self-service analytics", "backfill", "data quality"],
+      "responsibilities": [
+        "Build and operate large-scale data pipelines on AWS",
+        "Model curated datasets used by analytics and science teams",
+        "Own pipeline SLAs, data quality and cost"
+      ],
+      "notes": "Redshift, Glue and S3 appear in most Amazon data engineering postings; generic ETL experience without cloud specifics scores lower."
+    },
+    {
+      "company": "google",
+      "role": "software-engineer",
+      "extra_required": [
+        {"skill": "Algorithms", "importance": 1.0},
+        {"skill": "Data Structures", "importance": 1.0},
+        {"skill": "System Design", "importance": 0.88}
+      ],
+      "extra_preferred": [
+        {"skill": "C++", "importance": 0.7},
+        {"skill": "Go", "importance": 0.55},
+        {"skill": "Google Cloud Platform", "importance": 0.6}
+      ],
+      "keywords": ["complexity analysis", "distributed systems", "code quality", "large scale", "design review", "testing culture"],
+      "responsibilities": [
+        "Design and implement components of large distributed systems",
+        "Uphold code health through review and testing",
+        "Analyse and improve algorithmic efficiency of critical paths"
+      ],
+      "notes": "Fundamentals dominate. Framework-heavy resumes without algorithmic substance are the most common Google screen failure."
+    },
+    {
+      "company": "google",
+      "role": "data-scientist",
+      "extra_required": [
+        {"skill": "Statistics", "importance": 0.98},
+        {"skill": "A/B Testing", "importance": 0.92},
+        {"skill": "SQL", "importance": 0.95}
+      ],
+      "extra_preferred": [
+        {"skill": "BigQuery", "importance": 0.7},
+        {"skill": "R", "importance": 0.6},
+        {"skill": "Business Acumen", "importance": 0.75}
+      ],
+      "keywords": ["experiment design", "causal inference", "statistical rigor", "metric definition", "launch decision", "power analysis"],
+      "responsibilities": [
+        "Design experiments and define metrics that drive launch decisions",
+        "Apply statistical and causal methods to observational data",
+        "Communicate analysis to engineering and product leadership"
+      ],
+      "notes": "Google data science interviews probe statistics deeply. Resumes that show modelling but no experimentation or inference read as ML engineering instead."
+    },
+    {
+      "company": "microsoft",
+      "role": "ai-engineer",
+      "extra_required": [
+        {"skill": "Microsoft Azure", "importance": 0.9},
+        {"skill": "Azure ML", "importance": 0.78},
+        {"skill": "Responsible AI", "importance": 0.72}
+      ],
+      "extra_preferred": [
+        {"skill": "C#", "importance": 0.55},
+        {"skill": "RAG", "importance": 0.75},
+        {"skill": "Docker", "importance": 0.7}
+      ],
+      "keywords": ["azure ai", "responsible ai", "enterprise deployment", "copilot", "grounding", "evaluation", "customer scenarios"],
+      "responsibilities": [
+        "Build AI features on Azure AI and Azure ML for enterprise customers",
+        "Apply responsible AI practices including evaluation and grounding",
+        "Work across teams to bring AI capability into existing products"
+      ],
+      "notes": "Microsoft weights responsible AI and enterprise readiness alongside model skill - safety and evaluation vocabulary matters here."
+    },
+    {
+      "company": "meta",
+      "role": "machine-learning-engineer",
+      "extra_required": [
+        {"skill": "PyTorch", "importance": 0.88},
+        {"skill": "Recommendation Systems", "importance": 0.82},
+        {"skill": "Data Structures", "importance": 0.85}
+      ],
+      "extra_preferred": [
+        {"skill": "A/B Testing", "importance": 0.78},
+        {"skill": "Big Data", "importance": 0.7},
+        {"skill": "Apache Spark", "importance": 0.65}
+      ],
+      "keywords": ["ranking", "personalisation", "online metrics", "impact", "large scale training", "feature pipelines", "experiment velocity"],
+      "responsibilities": [
+        "Improve ranking and recommendation models measured by online metrics",
+        "Run experiments and ship model changes to production traffic",
+        "Build feature pipelines that operate at very large scale"
+      ],
+      "notes": "Meta MLE resumes are read for online impact. Offline accuracy alone is a weaker signal than a shipped model with measured metric movement."
+    },
+    {
+      "company": "netflix",
+      "role": "data-engineer",
+      "extra_required": [
+        {"skill": "Apache Spark", "importance": 0.88},
+        {"skill": "Kafka", "importance": 0.82},
+        {"skill": "AWS", "importance": 0.85}
+      ],
+      "extra_preferred": [
+        {"skill": "Streaming", "importance": 0.8},
+        {"skill": "Monitoring", "importance": 0.68},
+        {"skill": "Data Quality", "importance": 0.72}
+      ],
+      "keywords": ["streaming data", "resilience", "self-service platform", "context not control", "scale", "operational maturity"],
+      "responsibilities": [
+        "Build streaming and batch platforms used across the company",
+        "Operate pipelines with high autonomy and strong judgement",
+        "Design for resilience at streaming scale"
+      ],
+      "notes": "Netflix hires senior. Early-career candidates should target the strongest possible depth signal on one system rather than breadth."
+    },
+    {
+      "company": "nvidia",
+      "role": "machine-learning-engineer",
+      "extra_required": [
+        {"skill": "C++", "importance": 0.9},
+        {"skill": "CUDA", "importance": 0.88},
+        {"skill": "PyTorch", "importance": 0.85}
+      ],
+      "extra_preferred": [
+        {"skill": "Model Deployment", "importance": 0.78},
+        {"skill": "Linux", "importance": 0.7},
+        {"skill": "Deep Learning", "importance": 0.9}
+      ],
+      "keywords": ["gpu acceleration", "kernel optimisation", "throughput", "mixed precision", "inference optimisation", "benchmark", "memory bandwidth"],
+      "responsibilities": [
+        "Optimise training and inference workloads on GPU hardware",
+        "Profile and remove bottlenecks in deep learning pipelines",
+        "Work close to the metal with CUDA and C++"
+      ],
+      "notes": "Performance numbers are the currency here. A speedup with a before/after benchmark outweighs a long framework list."
+    },
+    {
+      "company": "apple",
+      "role": "software-engineer",
+      "extra_required": [
+        {"skill": "C++", "importance": 0.85},
+        {"skill": "Operating Systems", "importance": 0.8},
+        {"skill": "Testing", "importance": 0.82}
+      ],
+      "extra_preferred": [
+        {"skill": "Swift", "importance": 0.7},
+        {"skill": "Security", "importance": 0.7},
+        {"skill": "Problem Solving", "importance": 0.75}
+      ],
+      "keywords": ["performance", "memory footprint", "on-device", "privacy", "quality bar", "cross-functional", "debugging"],
+      "responsibilities": [
+        "Build software that meets a very high quality and performance bar",
+        "Debug complex issues across the stack, sometimes down to hardware",
+        "Collaborate with design and hardware teams"
+      ],
+      "notes": "Apple prefers specialists with visible craft. Depth beats breadth in every section of the resume."
+    },
+    {
+      "company": "ibm",
+      "role": "cloud-engineer",
+      "extra_required": [
+        {"skill": "Kubernetes", "importance": 0.88},
+        {"skill": "Docker", "importance": 0.88},
+        {"skill": "Security", "importance": 0.78}
+      ],
+      "extra_preferred": [
+        {"skill": "Terraform", "importance": 0.8},
+        {"skill": "Agile", "importance": 0.6},
+        {"skill": "Communication", "importance": 0.75}
+      ],
+      "keywords": ["hybrid cloud", "openshift", "compliance", "client engagement", "migration", "governance", "high availability"],
+      "responsibilities": [
+        "Design and deliver hybrid cloud solutions for enterprise clients",
+        "Automate provisioning and enforce security and compliance controls",
+        "Engage directly with client engineering teams"
+      ],
+      "notes": "Client-facing evidence and certifications carry unusual weight in IBM screens compared with product companies."
+    },
+    {
+      "company": "adobe",
+      "role": "ai-engineer",
+      "extra_required": [
+        {"skill": "Deep Learning", "importance": 0.9},
+        {"skill": "LLMs", "importance": 0.85},
+        {"skill": "Model Deployment", "importance": 0.82}
+      ],
+      "extra_preferred": [
+        {"skill": "Computer Vision", "importance": 0.8},
+        {"skill": "React", "importance": 0.5},
+        {"skill": "Model Fine-Tuning", "importance": 0.72}
+      ],
+      "keywords": ["generative ai", "creative workflows", "user delight", "latency", "content intelligence", "demo", "product craft"],
+      "responsibilities": [
+        "Bring generative and vision models into creative product surfaces",
+        "Balance model quality against interactive latency budgets",
+        "Work closely with designers on how AI features feel to use"
+      ],
+      "notes": "A public demo or portfolio link materially improves Adobe screening outcomes for AI roles."
+    }
+  ]
+}
