@@ -21,8 +21,10 @@ SQLAlchemy>=2.0,<3.0
 
 # --- Machine learning / NLP ------------------------------------------------
 scikit-learn>=1.4               # TF-IDF vectoriser + cosine similarity
+# numpy arrives with scikit-learn and spaCy; pinned here only to keep the
+# floor explicit. Nothing in this project imports it directly - the
+# no-scikit-learn fallback in ml/similarity_model.py is pure Python.
 numpy>=1.26
-pandas>=2.2
 
 # spaCy powers lemmatisation and named-entity recognition. If it is missing the
 # NLP pipeline falls back to a pure-regex implementation with the same API, so
