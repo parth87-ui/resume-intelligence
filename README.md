@@ -1,13 +1,25 @@
 # Resume Intelligence
 
-**Developed by Parth Khandelwal**
+[![Live demo](https://img.shields.io/badge/live%20demo-open%20app-6366f1?style=for-the-badge)](https://resume-intelligence-iq3x.onrender.com)
+[![API docs](https://img.shields.io/badge/API-swagger%20docs-22d3ee?style=for-the-badge)](https://resume-intelligence-iq3x.onrender.com/docs)
+[![Python](https://img.shields.io/badge/python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![spaCy](https://img.shields.io/badge/spaCy-NLP-09A3D5?style=for-the-badge)](https://spacy.io/)
+[![Tests](https://img.shields.io/badge/tests-64%20passing-22c55e?style=for-the-badge)](backend/tests/test_pipeline.py)
 
 **AI-powered company-specific resume optimisation and career intelligence.**
+Developed by **Parth Khandelwal**.
 
 Upload a resume, pick a target company and role, and get an explainable
 compatibility score, a prioritised skill-gap analysis, ATS diagnostics,
 truthful rewrite suggestions, gap-driven project recommendations and a phased
 learning roadmap — built for that specific target, not generic advice.
+
+### ▶ [Try it live](https://resume-intelligence-iq3x.onrender.com)
+
+> Hosted on a free tier, so the first request after a quiet spell takes
+> **40–60 seconds** while the instance wakes and loads the spaCy model. It is
+> not broken — give it a moment. Every request after that is fast.
 
 ```
 Resume upload → parsing → NLP skill extraction → company + role target
