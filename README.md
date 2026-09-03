@@ -30,7 +30,7 @@ from that one command. Interactive API docs are at `/docs`.
 python run.py --check     # verify the environment, report optional components
 python run.py --seed      # create and seed the database, then exit
 python run.py --port 9000 # different port
-pytest backend/tests -q   # 64 tests covering the whole pipeline
+pytest backend/tests -q   # 64 tests (needs backend/requirements-dev.txt)
 ```
 
 Two sample resumes are included for trying it immediately:
@@ -383,6 +383,7 @@ the app still runs on the regex pipeline; `/api/health` reports which is active.
 ## Testing
 
 ```bash
+pip install -r backend/requirements-dev.txt   # pytest + httpx, once
 pytest backend/tests -q                    # full suite
 pytest backend/tests -q -k Honesty         # the fabrication guarantees
 python backend/tests/manual/calibrate.py   # score scale across targets
