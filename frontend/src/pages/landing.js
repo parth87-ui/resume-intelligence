@@ -68,6 +68,9 @@ export const landing = {
           score, a prioritised skill-gap analysis, ATS diagnostics, honest rewrite suggestions and a
           project-backed learning roadmap — built for that specific target, not generic advice.
         </p>
+        <p class="small faint" style="margin-top:18px">
+          Developed by <strong style="color:var(--text-dim)">Parth Khandelwal</strong>
+        </p>
         <div class="cta">
           <button class="btn primary" data-route="upload">Analyse my resume →</button>
           <button class="btn ghost" data-route="target">Browse companies &amp; roles</button>

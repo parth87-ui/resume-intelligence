@@ -190,7 +190,7 @@ function renderShell() {
           <div class="brand-mark">RI</div>
           <div class="brand-text">
             <strong>Resume Intelligence</strong>
-            <span>Career platform</span>
+            <span>Developed by Parth Khandelwal</span>
           </div>
         </div>
         <nav class="nav" id="nav"></nav>

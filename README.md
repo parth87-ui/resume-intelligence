@@ -1,5 +1,7 @@
 # Resume Intelligence
 
+**Developed by Parth Khandelwal**
+
 **AI-powered company-specific resume optimisation and career intelligence.**
 
 Upload a resume, pick a target company and role, and get an explainable
