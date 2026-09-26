@@ -13,6 +13,8 @@ from typing import Any, Literal
 from pydantic import BaseModel, Field, field_validator
 
 LevelId = Literal["intern", "entry", "mid", "senior"]
+BuildMode = Literal["confirmed", "auto_add"]
+ExportFormat = Literal["docx", "pdf", "txt"]
 
 
 class HealthResponse(BaseModel):
@@ -154,6 +156,61 @@ class AnalysisSummary(BaseModel):
     matched_count: int
     missing_count: int
     created_at: str
+
+
+class ResumeDetails(BaseModel):
+    """Contact fields the user fills in or overrides in the builder."""
+
+    name: str = ""
+    email: str = ""
+    phone: str = ""
+    linkedin: str = ""
+    github: str = ""
+    portfolio: str = ""
+    location: str = ""
+
+
+class BuildResumeRequest(BaseModel):
+    analysis_id: int = Field(description="Id of a stored analysis to rebuild against.")
+    mode: BuildMode = Field(
+        default="confirmed",
+        description=(
+            "'confirmed' adds only the skills listed in confirmed_skills. "
+            "'auto_add' adds every missing required and preferred skill without "
+            "confirmation and labels them in the response - never the default."
+        ),
+    )
+    confirmed_skills: list[str] = Field(
+        default_factory=list,
+        description="Missing skills the user has confirmed they genuinely have.",
+    )
+    learning_skills: list[str] = Field(
+        default_factory=list,
+        description="Missing skills the user is learning; shown on a separate line.",
+    )
+    details: ResumeDetails = Field(default_factory=ResumeDetails)
+    projects_built: list[str] = Field(
+        default_factory=list,
+        description=(
+            "Recommended-project ids the user confirms they have built. The bullet "
+            "is inserted as a template with blanks, which the export refuses to "
+            "remove until they are filled."
+        ),
+    )
+    projects_in_progress: list[str] = Field(
+        default_factory=list,
+        description="Project ids the user is part-way through; listed separately and labelled.",
+    )
+
+
+class ExportResumeRequest(BaseModel):
+    text: str = Field(min_length=40, description="The (possibly user-edited) resume text.")
+    format: ExportFormat = "docx"
+    strip_placeholders: bool = Field(
+        default=True,
+        description="Remove [ ... ] and < ... > blanks so an unfinished marker never ships.",
+    )
+    file_name: str = Field(default="resume", max_length=120)
 
 
 class ErrorResponse(BaseModel):

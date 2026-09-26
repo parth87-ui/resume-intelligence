@@ -8,6 +8,7 @@ import { dashboardPage } from './pages/dashboard.js';
 import { gapsPage } from './pages/gaps.js';
 import { landing } from './pages/landing.js';
 import { projectsPage } from './pages/projects.js';
+import { builderPage } from './pages/builder.js';
 import { roadmapPage } from './pages/roadmap.js';
 import { targetPage } from './pages/target.js';
 import { uploadPage } from './pages/upload.js';
@@ -24,6 +25,7 @@ const ROUTES = {
   gaps: { page: gapsPage, icon: '△', label: 'Skill gaps', group: 'results', needsAnalysis: true },
   projects: { page: projectsPage, icon: '◱', label: 'Projects', group: 'results', needsAnalysis: true },
   roadmap: { page: roadmapPage, icon: '⇗', label: 'Learning roadmap', group: 'results', needsAnalysis: true },
+  builder: { page: builderPage, icon: '✎', label: 'Resume builder', group: 'results', needsAnalysis: true },
 };
 
 const root = document.getElementById('app');
@@ -356,17 +358,23 @@ async function runAnalysis() {
   }
 }
 
+/**
+ * Returns `{ ok }` rather than throwing, because the caller needs to react
+ * differently to a rejected posting than to a network failure.
+ *
+ * Navigation deliberately happens *after* a successful response: a job
+ * description can be refused (non-tech), and bouncing the user to an empty
+ * dashboard and back again would lose the textarea they just pasted into.
+ */
 async function runJobDescriptionAnalysis(jobDescription, fuse) {
   const { resume, target } = getState();
   if (!resume) {
     toast('Upload a resume first.', 'error');
     navigate('upload');
-    return;
+    return { ok: false };
   }
 
   setState({ status: 'analysing' });
-  navigate('dashboard');
-  renderPage();
 
   try {
     const payload = {
@@ -381,6 +389,7 @@ async function runJobDescriptionAnalysis(jobDescription, fuse) {
     }
     const analysis = await api.analyzeJobDescription(payload);
     setState({ analysis, status: 'ready' });
+    navigate('dashboard');
     renderPage();
     const detected = analysis.job_description_analysis;
     toast(
@@ -389,9 +398,10 @@ async function runJobDescriptionAnalysis(jobDescription, fuse) {
       }.`,
       'success'
     );
+    return { ok: true, analysis };
   } catch (error) {
     setState({ status: 'idle' });
-    renderPage();
     toast(error.message, 'error', 9000);
+    return { ok: false, error };
   }
 }

@@ -5,7 +5,7 @@
 [![Python](https://img.shields.io/badge/python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![spaCy](https://img.shields.io/badge/spaCy-NLP-09A3D5?style=for-the-badge)](https://spacy.io/)
-[![Tests](https://img.shields.io/badge/tests-64%20passing-22c55e?style=for-the-badge)](backend/tests/test_pipeline.py)
+[![Tests](https://img.shields.io/badge/tests-111%20passing-22c55e?style=for-the-badge)](backend/tests/test_pipeline.py)
 
 **AI-powered company-specific resume optimisation and career intelligence.**
 Developed by **Parth Khandelwal**.
@@ -44,7 +44,7 @@ from that one command. Interactive API docs are at `/docs`.
 python run.py --check     # verify the environment, report optional components
 python run.py --seed      # create and seed the database, then exit
 python run.py --port 9000 # different port
-pytest backend/tests -q   # 64 tests (needs backend/requirements-dev.txt)
+pytest backend/tests -q   # 111 tests (needs backend/requirements-dev.txt)
 ```
 
 Two sample resumes are included for trying it immediately:
@@ -149,12 +149,52 @@ then sequenced into phases: surface what you already have → close blocking gap
 → prove it with a project → broaden → emerging skills. The projected score uses
 the same formula as the live score, so the number is defensible.
 
-### 9. Job description analysis
-Paste a real posting and it is parsed into required/preferred skills,
-responsibilities and keywords, then run through the identical pipeline — on its
-own, or fused with a curated company profile.
+### 9. Fit verdict — should you apply?
 
-### 10. Grounded career assistant
+Separate from the score. A resume can score 62/100 and still be an automatic
+rejection, so a short list of explicit checks runs alongside the score, and any
+one of them can veto the verdict:
+
+```
+Strong fit · Good fit · Partial fit · Not a fit
+
+required coverage  knockout below 40% of the role's required skills
+experience         knockout only when the posting states a number and you are 2+ years short
+degree             knockout when it requires a Master's/PhD and your resume shows neither
+blocking gaps      informs the verdict, never vetoes it
+overall score      informs the verdict, never vetoes it
+```
+
+Where a knockout applies, the advice addresses *that*, not bullet polish. A
+target picked from the catalogue carries no employer-stated years, so its
+experience expectation can only warn — it is our estimate, not the company's bar.
+
+### 10. Resume builder
+
+Generates a new resume for the selected target and re-scores its own output, so
+the before → after number is measured rather than claimed.
+
+Bullets go through the same rewrite rules as the suggestions engine; the summary
+is assembled only from facts already in the document. Skills the resume does not
+evidence are added **only** where the user ticks "I have this"; anything marked
+as in progress goes on a separate `Currently learning:` line and never into the
+skills list.
+
+Exports to DOCX, PDF or TXT — single column, black text, no tables or images, so
+an ATS parses it cleanly. Bracketed blanks are stripped on download by default.
+
+### 11. Job description analysis
+Paste a real posting and it is parsed into required/preferred skills,
+responsibilities, keywords and any stated degree requirement, then run through
+the identical pipeline — on its own, or fused with a curated company profile.
+
+**Non-technical postings are refused rather than scored.** Everything this
+platform knows is technical, so a sales or nursing posting would produce a
+confident number that measured nothing. A posting is rejected only when it names
+fewer than three technical skills *and* uses more non-technical than technical
+vocabulary, so a genuine ML posting mentioning "customer support" still passes.
+
+### 12. Grounded career assistant
 Answers questions using your actual analysis ("Why is my score what it is?",
 "What should I learn first?"). It refuses to help fabricate credentials and
 redirects to acquiring the skill instead.
@@ -183,8 +223,53 @@ Enforced in code, not just in prompt text:
    you finish it."
 5. **Every rewrite is labelled for verification.**
 
-`TestHonestyGuarantees` in the test suite asserts all of this against real
-generated output.
+`TestHonestyGuarantees` and `TestBuilderHonesty` assert all of this against real
+generated output — including that the resume builder never emits a number absent
+from the source document. The builder's summary states a years figure only when
+the resume states one itself; a duration inferred from date ranges is accurate
+but was never *claimed* by the candidate, so it is not written back out.
+
+### The one deliberate exception: `auto_add`
+
+The resume builder has a second mode, `auto_add`, which adds every missing
+required and preferred skill to the document without asking. **This bypasses
+rule 1**, and it exists because some users will otherwise do it by hand, worse
+and without a record of what changed.
+
+It is constrained rather than hidden:
+
+* It is **never the default** — `confirmed` mode is, and adds only what the user
+  ticked. An unrecognised mode falls back to `confirmed`.
+* Every added skill is returned in `auto_added_skills`, carries
+  `auto_add_warning` ("These skills were added without your confirmation. Remove
+  any you can't defend in an interview."), and is recorded in the change log.
+* The UI states the consequence before you choose it, lists every added skill as
+  a chip in the result, and disables the per-skill ticks so the choice is not
+  ambiguous.
+
+Rules 2–5 still hold in `auto_add`: no invented metrics, no inflated
+contribution, no fabricated employers, projects or dates.
+
+### Adding a recommended project
+
+The builder will not write a project you have not built — that is the line it
+does not cross. What it does instead:
+
+* names the projects that would close your gaps, with the bullet to use **after**
+  you finish one;
+* lets you tick **"I built this"**, which inserts that bullet as a *scaffold*
+  with its `<blanks>` intact;
+* lets you tick **"Building it"**, which adds a separate, labelled
+  `In progress:` line that can never read as finished work.
+
+A scaffold is not a claim, and the export enforces that: **`<…>` blanks block
+the download.** Stripping them would turn
+
+> Deployed a `<model type>` model … at `<latency>` ms p95
+
+into "Deployed a model … at ms p95" — a broken sentence that also asserts work
+that may never have happened. `[add a measurable result …]` prompts still strip
+silently, because removing one leaves a sentence that is still true.
 
 ---
 
@@ -292,6 +377,8 @@ Full interactive documentation at `/docs`. Summary:
 | POST | `/api/analyze/job-description` | Analysis against a pasted posting |
 | GET | `/api/analysis/{id}` | Stored analysis |
 | GET | `/api/analyses` | Recent analyses |
+| POST | `/api/resume/build` | Generate an improved resume from a stored analysis |
+| POST | `/api/resume/export` | Download it as DOCX, PDF or TXT |
 | POST | `/api/projects/recommend` | Projects for an explicit skill list |
 | GET | `/api/roadmap/{analysis_id}` | Roadmap for a stored analysis |
 | POST | `/api/chat` | Grounded career assistant |

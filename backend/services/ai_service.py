@@ -43,6 +43,11 @@ METRIC_PLACEHOLDER_HINTS: dict[str, str] = {
     "default": "[add a measurable result — e.g. %, time saved, users, scale]",
 }
 
+# Recognises a blank this engine already inserted, so regenerating an already
+# generated resume is idempotent rather than cumulative.
+_HAS_METRIC_BLANK_RE = re.compile(r"\[add a measurable result", re.IGNORECASE)
+_HAS_TOOL_BLANK_RE = re.compile(r"<the specific tools you used>", re.IGNORECASE)
+
 # Weak opener -> stronger alternatives, chosen by what the bullet is about.
 VERB_UPGRADES: dict[str, list[str]] = {
     "worked": ["Built", "Developed", "Delivered"],
@@ -519,12 +524,19 @@ class AIService:
 
         # Name the technology if the bullet clearly implies work the target
         # cares about but names no tool.
-        if not re.search(r"\b(using|with|in)\b", text, re.I) and len(text.split()) > 6:
+        if (
+            not re.search(r"\b(using|with|in)\b", text, re.I)
+            and len(text.split()) > 6
+            and not _HAS_TOOL_BLANK_RE.search(text)
+        ):
             text = text.rstrip(". ") + " using <the specific tools you used>"
             reasons.append("The tools used are not named - recruiters and ATS filters both look for them.")
             tags.append("keyword-alignment")
 
-        if not find_metrics(original):
+        # A bullet that already carries a blank must not collect another one.
+        # Without this the builder compounds: every regeneration of an already
+        # generated resume appends a second, third, fourth placeholder.
+        if not find_metrics(original) and not _HAS_METRIC_BLANK_RE.search(text):
             placeholder = METRIC_PLACEHOLDER_HINTS.get(
                 _dominant_category(match), METRIC_PLACEHOLDER_HINTS["default"]
             )
@@ -548,9 +560,15 @@ class AIService:
     def _pick_verb(text: str, weak: str) -> str:
         if weak in NON_INFLATING_OPENERS:  # defensive - callers already skip these
             return weak.capitalize()
+        rest = text.split(maxsplit=1)[1] if len(text.split()) > 1 else ""
         for pattern, verb in CONTEXT_VERBS:
-            if pattern.search(text):
-                return verb
+            if not pattern.search(text):
+                continue
+            # Skip a verb that just restates its own object: "Wrote unit tests"
+            # must not become "Tested unit tests".
+            if _restates_object(verb, rest):
+                continue
+            return verb
         options = VERB_UPGRADES.get(weak)
         return options[0] if options else "Delivered"
 
@@ -756,6 +774,19 @@ def _first_word(text: str) -> str:
 
 
 _NUMBER_RE = re.compile(r"\d+(?:[.,]\d+)?%?")
+
+
+def _restates_object(verb: str, rest: str) -> bool:
+    """True when the chosen verb echoes the words straight after it.
+
+    The context-verb rules fire on topic keywords, so a bullet about tests
+    attracts "Tested" even when it already says "unit tests". Rewriting
+    "Wrote unit tests" to "Tested unit tests" is worse than leaving it, so that
+    pairing is rejected and the next candidate is used.
+    """
+    stem = verb.lower().rstrip("ed").rstrip("e")
+    head = " ".join(rest.lower().split()[:3])
+    return bool(stem) and stem in head
 
 
 def _introduces_metric(original: str, suggested: str) -> bool:

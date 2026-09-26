@@ -71,6 +71,60 @@ async function request(path, { method = 'GET', body, timeout = 120000, isForm = 
   }
 }
 
+/**
+ * Same contract as `request()`, but for endpoints that answer with a file.
+ *
+ * The body cannot be read twice, so the response is only turned into a blob
+ * once the status is known to be OK; error bodies stay JSON and are surfaced
+ * through ApiError exactly as everywhere else.
+ */
+async function requestFile(path, body, { timeout = 120000 } = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeout);
+  try {
+    const response = await fetch(apiBase() + path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+      let payload = null;
+      try {
+        payload = text ? JSON.parse(text) : null;
+      } catch {
+        payload = { detail: text.slice(0, 200).trim() };
+      }
+      throw new ApiError(
+        payload?.detail || `Export failed (${response.status})`,
+        response.status,
+        payload
+      );
+    }
+
+    const blob = await response.blob();
+    // Content-Disposition is only readable cross-origin because the API lists
+    // it in Access-Control-Expose-Headers.
+    const disposition = response.headers.get('content-disposition') || '';
+    const match = /filename="?([^";]+)"?/.exec(disposition);
+    return { blob, fileName: match ? match[1].trim() : '' };
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new ApiError('The export timed out. Try again in a moment.', 0, null);
+    }
+    if (error instanceof ApiError) throw error;
+    throw new ApiError(
+      `Could not reach the API at ${apiBase() || 'this origin'} to build the file.`,
+      0,
+      null
+    );
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 export const api = {
   health: () => request('/api/health', { timeout: 15000 }),
   catalog: () => request('/api/catalog'),
@@ -97,6 +151,10 @@ export const api = {
   listAnalyses: (resumeId) =>
     request(`/api/analyses${resumeId ? `?resume_id=${resumeId}` : ''}`),
   recommendProjects: (payload) => request('/api/projects/recommend', { method: 'POST', body: payload }),
+  buildResume: (payload) =>
+    request('/api/resume/build', { method: 'POST', body: payload, timeout: 180000 }),
+  exportResume: (payload) => requestFile('/api/resume/export', payload),
+
   chat: (payload) => request('/api/chat', { method: 'POST', body: payload, timeout: 60000 }),
   chatStarters: () => request('/api/chat/starters'),
 };

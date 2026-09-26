@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import JSONResponse
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -13,7 +14,7 @@ from db.models import ProjectRecommendation, Recommendation, Resume, ResumeAnaly
 from db.seed import ensure_requirement_row
 from schemas import AnalyseRequest, AnalysisSummary, JobDescriptionRequest, ProjectRequest
 from services.analysis_service import get_analysis_service
-from services.jd_parser import get_jd_parser
+from services.jd_parser import NonTechJobDescriptionError, get_jd_parser
 from services.knowledge_base import get_knowledge_base
 from services.recommendation_engine import get_recommendation_engine
 from services.resume_parser import ParsedResume, get_resume_parser
@@ -162,6 +163,18 @@ def analyze_job_description(
             company_name=request.company_name,
             role_title=request.role_title,
             level_id=request.level,
+        )
+    except NonTechJobDescriptionError as exc:
+        # Answered with an explicit code rather than a bare 422 so the UI can
+        # tell "not a tech posting" apart from "the posting was unparseable"
+        # and keep the user on the target page instead of navigating away.
+        return JSONResponse(
+            status_code=422,
+            content={
+                "detail": str(exc),
+                "code": "non_tech_jd",
+                "domain": exc.domain,
+            },
         )
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc

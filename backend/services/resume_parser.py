@@ -476,10 +476,35 @@ class ResumeParser:
 
     @staticmethod
     def _extract_location(head: str) -> str:
-        match = re.search(
-            r"\b([A-Z][a-z]+(?:\s[A-Z][a-z]+)?),\s*([A-Z][a-z]+|[A-Z]{2})\b", head
-        )
-        return match.group(0) if match else ""
+        """City from the contact block only.
+
+        "Title Case, Title Case" is a weak signal on its own - a skills line
+        like "ML & AI: Machine Learning, Deep Learning" matches it perfectly and
+        used to end up printed as the candidate's location. So only lines that
+        look like contact lines are searched, and labelled lines are skipped.
+        """
+        for line in head.split("\n")[:6]:
+            stripped = line.strip()
+            if not stripped:
+                continue
+            # "Languages: Python, C" and friends are never a location.
+            if re.match(r"^[A-Za-z][A-Za-z &/]{2,28}:", stripped):
+                continue
+            contactish = bool(
+                re.search(r"@|\||\+\d|linkedin|github|https?://", stripped, re.IGNORECASE)
+            )
+            if not contactish:
+                continue
+            for part in re.split(r"\s*\|\s*", stripped):
+                if re.search(r"@|linkedin|github|https?://|\d{4}", part, re.IGNORECASE):
+                    continue
+                match = re.search(
+                    r"^\s*([A-Z][a-z]+(?:[\s-][A-Z][a-z]+)?)(?:,\s*([A-Z][a-z]+|[A-Z]{2}))?\s*$",
+                    part,
+                )
+                if match:
+                    return match.group(0).strip()
+        return ""
 
     # -- section parsers ---------------------------------------------------
 
@@ -499,6 +524,18 @@ class ResumeParser:
             lines = [l for l in chunk.split("\n") if l.strip()]
             if not lines:
                 continue
+
+            # A chunk of nothing but bullets belongs to the role above it. A
+            # blank line between bullets is a layout choice, not a new job, and
+            # treating it as one invents title-less entries that drag the
+            # experience score down.
+            if entries and all(BULLET_RE.match(l) for l in lines):
+                entries[-1].bullets.extend(
+                    BULLET_RE.sub("", l).strip() for l in lines
+                )
+                entries[-1].raw += "\n" + chunk.strip()
+                continue
+
             entry = ExperienceEntry(raw=chunk.strip())
             header_lines = [l for l in lines if not BULLET_RE.match(l)][:3]
             header = " | ".join(l.strip() for l in header_lines)
@@ -523,6 +560,24 @@ class ResumeParser:
             lines = [l for l in chunk.split("\n") if l.strip()]
             if not lines:
                 continue
+
+            # Continuation of the project above: either pure bullets, or only
+            # the metadata lines that belong to it. Without this every bullet
+            # becomes its own "project" and the project count explodes - which
+            # then reads as a portfolio of trivial work.
+            if entries and all(
+                BULLET_RE.match(l) or _PROJECT_META_RE.match(l.strip()) for l in lines
+            ):
+                previous = entries[-1]
+                previous.bullets.extend(
+                    BULLET_RE.sub("", l).strip() for l in lines if BULLET_RE.match(l)
+                )
+                meta = _first_match(_PROJECT_META_RE, lines)
+                if meta and not previous.tech_hint and meta[0].lower().startswith("tech"):
+                    previous.tech_hint = meta[1]
+                previous.raw += "\n" + chunk.strip()
+                continue
+
             head = lines[0].strip()
             head = BULLET_RE.sub("", head).strip()
             name = re.split(r"\s[|\-–—]\s|:", head)[0].strip()
@@ -619,6 +674,22 @@ class ResumeParser:
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+
+# "Tech: …", "Stack: …", "Link: …" - metadata that hangs off a project rather
+# than starting a new one.
+_PROJECT_META_RE = re.compile(
+    r"^(tech(?:nolog(?:y|ies))?|stack|tools|built with|link|repo|demo|url)\s*[:\-]\s*(.+)$",
+    re.IGNORECASE,
+)
+
+
+def _first_match(pattern: re.Pattern, lines: list[str]) -> tuple[str, str] | None:
+    for line in lines:
+        found = pattern.match(line.strip())
+        if found:
+            return found.group(1), found.group(2).strip()
+    return None
 
 
 def _split_entries(block: str, min_lines: int = 1) -> list[str]:

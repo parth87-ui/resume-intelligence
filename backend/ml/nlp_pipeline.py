@@ -274,10 +274,30 @@ class NLPPipeline:
 # ---------------------------------------------------------------------------
 
 
+# PDF text layers store "fi", "fl", "ffi" and friends as single ligature
+# glyphs. Left alone they silently break everything downstream: "Artiﬁcial
+# Intelligence" never matches the ontology, "MLﬂow" becomes an unknown term, and
+# a CS degree reads as a non-technical field of study.
+_LIGATURES = {
+    "ﬀ": "ff", "ﬁ": "fi", "ﬂ": "fl", "ﬃ": "ffi",
+    "ﬄ": "ffl", "ﬅ": "st", "ﬆ": "st", "ı": "i",
+}
+# Typographic punctuation that would otherwise split tokens or defeat matching.
+_PUNCTUATION = {
+    "‘": "'", "’": "'", "“": '"', "”": '"',
+    " ": " ", " ": " ", " ": " ", "​": "",
+    "﻿": "", "−": "-", "‐": "-", "‑": "-",
+}
+
+
 def normalise_whitespace(text: str) -> str:
     if not text:
         return ""
     text = text.replace("\r\n", "\n").replace("\r", "\n")
+    for source, replacement in _LIGATURES.items():
+        text = text.replace(source, replacement)
+    for source, replacement in _PUNCTUATION.items():
+        text = text.replace(source, replacement)
     text = text.replace("•", "\n- ").replace("●", "\n- ").replace("▪", "\n- ")
     text = re.sub(r"[ \t\f\v]+", " ", text)
     text = re.sub(r"\n{3,}", "\n\n", text)

@@ -25,6 +25,7 @@ from ml.nlp_pipeline import get_pipeline
 from ml.scoring_engine import ScoringEngine
 from services.ai_service import get_ai_service
 from services.ats_analyzer import get_ats_analyzer
+from services.fit_evaluator import get_fit_evaluator
 from services.job_matcher import MatchResult, get_job_matcher
 from services.knowledge_base import JobRequirement, get_knowledge_base
 from services.recommendation_engine import get_recommendation_engine
@@ -42,6 +43,7 @@ class AnalysisService:
         self.ai = get_ai_service()
         self.recommender = get_recommendation_engine()
         self.sections = get_section_scorer()
+        self.fit = get_fit_evaluator()
         self.nlp = get_pipeline()
 
     # -- public ------------------------------------------------------------
@@ -66,6 +68,7 @@ class AnalysisService:
 
         ats = self.ats.analyse(resume, match)
         section_scores = self.sections.score(resume, match)
+        fit = self.fit.evaluate(resume, match, report, jd_analysis)
         suggestions = self.ai.improve_resume(resume, match, ats)
         projects = self.recommender.recommend_projects(match, limit=6)
         roadmap = self.recommender.build_roadmap(match)
@@ -76,6 +79,7 @@ class AnalysisService:
             "target": requirement.to_dict(),
             "resume_overview": self._resume_overview(resume, skills),
             "scoring": report.to_dict(),
+            "fit_assessment": fit,
             "ats": ats,
             "section_scores": section_scores,
             "skill_gap": match.gap_report(),
@@ -86,7 +90,7 @@ class AnalysisService:
             "learning_roadmap": roadmap,
             "skill_priority_plan": skill_plan,
             "charts": self._charts(match, report, ats, section_scores),
-            "insights": self._insights(match, report, ats, section_scores),
+            "insights": self._insights(match, report, ats, section_scores, fit),
             "pipeline": {
                 "nlp_backend": self.nlp.info(),
                 "similarity_method": self.matcher.similarity.method,
@@ -97,6 +101,7 @@ class AnalysisService:
                     "requirement composition",
                     "similarity & matching",
                     "weighted scoring",
+                    "fit verdict",
                     "ATS analysis",
                     "AI suggestions",
                     "project recommendation",
@@ -241,9 +246,17 @@ class AnalysisService:
         report,
         ats: dict[str, Any],
         section_scores: dict[str, Any],
+        fit: dict[str, Any],
     ) -> list[dict[str, str]]:
         req = match.requirement
+        # The fit verdict leads: "should I apply?" is the question a candidate
+        # asks before "what is my score?".
         insights: list[dict[str, str]] = [
+            {
+                "type": "fit",
+                "title": f"{fit['verdict']} — {fit['confidence']:.0f}% confidence",
+                "body": fit["headline"] + " " + fit["next_step"],
+            },
             {
                 "type": "score",
                 "title": f"{report.overall:.0f}/100 — {report.band}",

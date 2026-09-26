@@ -22,6 +22,9 @@
 │   job_matcher       gap analysis + component scores          │
 │   ats_analyzer      deterministic ATS checks                 │
 │   section_scorer    per-section scores + their working       │
+│   fit_evaluator     apply/don't-apply verdict + knockouts    │
+│   resume_builder    generates and re-scores a new resume     │
+│   resume_export     DOCX / PDF / TXT rendering               │
 │   ai_service        rewrites (rule-based + optional LLM)     │
 │   recommendation_engine  projects + roadmap                  │
 │   jd_parser         pasted job descriptions                  │
@@ -57,14 +60,25 @@ CLI scripts and any future frontend without change.
    skills, applies the credit rules, and computes the six component scores.
 5. **Score** — `scoring_engine` produces the weighted overall score, band and
    per-component breakdown with methods and evidence.
-6. **ATS** — `ats_analyzer` runs 16 point-weighted checks.
-7. **Sections** — `section_scorer` scores each part of the document, giving a
+6. **Fit** — `fit_evaluator` turns the match and score into an apply /
+   don't-apply verdict. Independent checks, any of which can veto: required
+   coverage, blocking gaps, experience, degree, overall score. Only an
+   employer-stated requirement can produce a knockout, never our own estimate.
+7. **ATS** — `ats_analyzer` runs 16 point-weighted checks.
+8. **Sections** — `section_scorer` scores each part of the document, giving a
    structural view of the same evidence.
-8. **Suggest** — `ai_service` generates section-by-section rewrites under the
+9. **Suggest** — `ai_service` generates section-by-section rewrites under the
    honesty contract.
-9. **Recommend** — `recommendation_engine` ranks projects by weighted gap
-   coverage and sequences the roadmap.
-10. **Chart** — `analysis_service` shapes the chart-ready payloads.
+10. **Recommend** — `recommendation_engine` ranks projects by weighted gap
+    coverage and sequences the roadmap.
+11. **Chart** — `analysis_service` shapes the chart-ready payloads.
+
+`resume_builder` sits outside this pipeline and *re-enters* it: it generates a
+document, re-parses it with `resume_parser`, and runs stages 2, 4, 5 and 6 again
+against the same requirement. That is why the before/after score is comparable
+rather than estimated, and why `JobRequirement.from_dict()` exists — a pasted
+job description has no dataset to recompose from, so the target is rebuilt from
+the stored payload.
 
 Every stage is independently testable and takes plain data structures.
 
@@ -160,6 +174,11 @@ Contrast is verified rather than assumed. Whether a token pair is readable
 depends on what it lands on - a chip tint over a card gradient over the page
 wash - and that composite only exists at runtime. `frontend/dev/contrast-audit.js`
 walks the live DOM, composites every translucent ancestor, and reports anything
-under WCAG AA; both themes currently pass on all seven pages. Elements sitting
+under WCAG AA; both themes currently pass on all eight pages.
+
+**Run it after a reload, not after an in-page theme toggle.** Switching theme
+with the toggle leaves `getComputedStyle` returning the previous background for
+already-painted elements, so the audit composites new text against the old
+surface and reports dozens of false failures. Set the theme, reload, then run. Elements sitting
 on a CSS gradient are skipped, since their background cannot be read from
 `backgroundColor` and would report as false failures.

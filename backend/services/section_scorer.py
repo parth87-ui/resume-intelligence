@@ -21,7 +21,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from ml.nlp_pipeline import ACTION_VERBS, WEAK_OPENERS, find_metrics
-from services.job_matcher import MatchResult
+from services.job_matcher import TECHNICAL_FIELD_TERMS, MatchResult
 from services.resume_parser import ParsedResume
 
 GENERIC_PHRASES = (
@@ -373,8 +373,7 @@ class SectionScorer:
             )
         )
 
-        relevant_terms = ("computer", "software", "data", "information", "electronic",
-                          "electrical", "statistic", "mathemat", "artificial", "machine")
+        relevant_terms = TECHNICAL_FIELD_TERMS
         blob = " ".join(f"{e.field_of_study} {e.raw}".lower() for e in entries)
         relevant = any(term in blob for term in relevant_terms)
         checks.append(

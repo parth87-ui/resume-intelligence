@@ -89,9 +89,10 @@ export const targetPage = {
         <div class="card">
           <div class="card-head">
             <div class="title"><h3>Have the actual job posting?</h3>
-              <span class="sub">Paste it to score against its real requirements instead of (or fused with) the profile above</span></div>
+              <span class="sub">Paste any tech job description and we'll tell you if your resume fits and what's missing.</span></div>
           </div>
           <textarea class="textarea" id="jd-area" placeholder="Paste the full job description, including the qualifications and responsibilities sections…">${esc(jobDescription || '')}</textarea>
+          <div id="jd-error" class="jd-error" hidden></div>
           <div class="row wrap" style="margin-top:12px">
             <label class="row small muted" style="gap:7px;cursor:pointer">
               <input type="checkbox" id="jd-fuse" checked /> Fuse with the selected company profile
@@ -140,15 +141,45 @@ export const targetPage = {
 
     root.querySelector('#run-btn').addEventListener('click', () => ctx.runAnalysis());
 
-    root.querySelector('#jd-btn').addEventListener('click', async () => {
+    const jdButton = root.querySelector('#jd-btn');
+    const jdError = root.querySelector('#jd-error');
+
+    const showJdError = (message) => {
+      jdError.innerHTML = `<span aria-hidden="true">⚠</span><span>${esc(message)}</span>`;
+      jdError.hidden = false;
+    };
+    const clearJdError = () => {
+      jdError.hidden = true;
+      jdError.textContent = '';
+    };
+
+    root.querySelector('#jd-area').addEventListener('input', clearJdError);
+
+    jdButton.addEventListener('click', async () => {
       const text = root.querySelector('#jd-area').value.trim();
+      clearJdError();
       if (text.split(/\s+/).filter(Boolean).length < 30) {
         toast('Paste the full job description — at least 30 words.', 'error');
+        showJdError('Paste the full posting — at least 30 words, including the requirements section.');
         return;
       }
+
       const fuse = root.querySelector('#jd-fuse').checked;
       setState({ jobDescription: text });
-      await ctx.runJobDescriptionAnalysis(text, fuse);
+
+      jdButton.disabled = true;
+      jdButton.textContent = 'Analysing…';
+      try {
+        const result = await ctx.runJobDescriptionAnalysis(text, fuse);
+        // A refused posting keeps the user here with their text intact; the
+        // analysis path navigates itself on success.
+        if (!result?.ok) {
+          showJdError(result?.error?.message || 'That posting could not be analysed.');
+        }
+      } finally {
+        jdButton.disabled = false;
+        jdButton.textContent = 'Analyse against this posting';
+      }
     });
 
     refresh(root, ctx);

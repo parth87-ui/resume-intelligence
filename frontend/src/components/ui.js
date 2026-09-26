@@ -109,6 +109,19 @@ export function countUp(node, to, { duration = 1100, decimals = 0, suffix = '' }
   requestAnimationFrame(tick);
 }
 
+/** Hand a generated file to the browser as a download. */
+export function downloadBlob(blob, fileName) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName || 'download';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  // Revoking immediately can cancel the download in some browsers.
+  setTimeout(() => URL.revokeObjectURL(url), 4000);
+}
+
 /** Read a design token, so JS-drawn colours follow the active theme. */
 export function token(name, fallback = '') {
   const value = getComputedStyle(document.documentElement).getPropertyValue(name);

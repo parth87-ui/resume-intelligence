@@ -215,6 +215,40 @@ The response is the full analysis:
 }
 ```
 
+### `fit_assessment` (in every analysis response)
+
+Answers "should I apply?", which is a different question from "what is my
+score?". Any single check can veto the verdict:
+
+```json
+"fit_assessment": {
+  "verdict": "Not a fit",            // Strong fit | Good fit | Partial fit | Not a fit
+  "is_fit": false,                   // true for Strong and Good
+  "confidence": 88.0,
+  "headline": "Not worth applying to this Machine Learning Engineer role yet …",
+  "required_coverage": 35.0,
+  "knockouts": ["experience"],
+  "checks": [
+    {"key": "required_coverage", "label": "Required skills", "status": "fail",
+     "detail": "35% of 9 required skills evidenced (2 fully, 2 partially).",
+     "knockout": true}
+  ],
+  "blocking_skills": ["AWS", "Kubernetes"],
+  "strengths": ["Python", "Project Relevance 85/100"],
+  "next_step": "Close AWS, Kubernetes before applying. …"
+}
+```
+
+| Check | Knockout when |
+|---|---|
+| `required_coverage` | below 40% of required skills (partials count at their credit) |
+| `experience` | **only** when the posting states a number and the gap is ≥ 2 years |
+| `degree` | the posting requires a Master's or PhD and the resume shows neither |
+| `blocking_gaps`, `overall_score` | never — they inform the verdict, they do not veto it |
+
+A catalog target (company + role + level) carries no employer-stated years, so
+its experience expectation is guidance and can only warn.
+
 ### `POST /api/analyze/job-description`
 
 ```json
@@ -233,6 +267,15 @@ adds cultural and keyword context). The response is the standard analysis plus:
 
 ```json
 "job_description_analysis": {
+  "domain": {
+    "is_tech": true, "confidence": 100.0, "tech_skill_count": 15,
+    "tech_signals": ["engineer", "machine learning"], "non_tech_signals": []
+  },
+  "degree_required": {
+    "level": "master", "level_label": "Master's degree",
+    "field": "Computer Science", "stated": true,
+    "equivalent_allowed": false, "evidence": "Master's degree in Computer Science…"
+  },
   "detected_company": "Amazon",
   "detected_role": "Machine Learning Engineer",
   "detected_level": "Mid Level (2-5 years)",
@@ -246,10 +289,118 @@ adds cultural and keyword context). The response is the standard analysis plus:
 
 `422` if the posting is too short or contains no recognisable skills.
 
+**Non-technical postings are refused,** not scored badly. The platform's
+ontology, company profiles and project library are all technical, so a sales or
+nursing posting would produce a confident number that measured nothing. Those
+return `422` with a distinct code:
+
+```json
+{
+  "detail": "This doesn't look like a tech job description. …",
+  "code": "non_tech_jd",
+  "domain": {"is_tech": false, "tech_skill_count": 0,
+             "non_tech_signals": ["marketing", "sales"]}
+}
+```
+
+A posting is refused only when it names fewer than 3 technical skills **and**
+uses more non-technical than technical vocabulary — so a genuine ML posting that
+mentions "customer support" still passes.
+
 ### `GET /api/analysis/{id}` · `GET /api/analyses?resume_id=&limit=`
 ### `GET /api/roadmap/{analysis_id}`
 
 ---
+
+## Resume builder
+
+### `POST /api/resume/build`
+
+Generates an improved resume from a stored analysis and re-scores its own output
+against the same requirement.
+
+```json
+{
+  "analysis_id": 12,
+  "mode": "confirmed",
+  "confirmed_skills": ["AWS"],
+  "learning_skills": ["MLOps"],
+  "details": {"phone": "+91 98765 43210", "portfolio": "yoursite.dev"}
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `mode` | `confirmed` (default) adds only `confirmed_skills`. `auto_add` adds every missing required and preferred skill without asking. |
+| `confirmed_skills` | Gaps the user states they genuinely have. |
+| `learning_skills` | Gaps in progress — rendered on a separate "Currently learning" line, never in the skills list. |
+| `details` | Contact fields to fill in or override. |
+| `projects_built` | Recommended-project ids the user confirms they built. The bullet is inserted with its `<…>` blanks intact. |
+| `projects_in_progress` | Project ids part-way through; listed on a separate, labelled `In progress:` line. |
+
+Project ids come from `recommended_projects` in a previous build response. An
+unknown id, or the same id in both lists, returns `422`.
+
+Both `confirmed_skills` and `learning_skills` must name skills that appear in
+that analysis's gap lists, and a skill cannot be in both — either returns `422`.
+
+```json
+{
+  "resume": { "contact": {}, "summary": [], "skills": [], "experience": [] },
+  "text": "ANANYA SHARMA
+…",
+  "changes": [{"section": "Skills", "action": "…", "detail": "…"}],
+  "missing_details": [{"field": "portfolio", "label": "Portfolio or personal site",
+                       "essential": false}],
+  "placeholder_count": 14,
+  "unfilled_blanks": 4,
+  "projects_added": {"built": ["Deploy an End-to-End ML Model on AWS"],
+                     "in_progress": ["Reproducible MLOps Pipeline"]},
+  "added_project_warning": "You said you have built this…",
+  "recommended_projects": [{"id": "e2e-ml-aws", "title": "…",
+                            "resume_bullet_template": "Deployed a <model type> model…"}],
+  "mode": "confirmed",
+  "skills_added": {"confirmed": ["AWS"], "auto_added": [], "learning": ["MLOps"]},
+  "auto_added_skills": [],
+  "auto_add_warning": "",
+  "score": {"before": 40.4, "after": 44.8,
+            "fit_before": "Partial fit", "fit_after": "Partial fit",
+            "band_before": "Developing Match", "band_after": "Developing Match"}
+}
+```
+
+`score.after` is **measured**, not estimated: the generated text is re-parsed and
+run through the identical matching and scoring pipeline.
+
+In `auto_add` mode the added skills are returned in `auto_added_skills` with
+`auto_add_warning` set, and the change log records it. See the honesty contract
+in the README — this mode is the one explicit opt-out.
+
+### `POST /api/resume/export`
+
+Renders the (usually user-edited) text as a file download.
+
+```json
+{"text": "ANANYA SHARMA
+…", "format": "docx",
+ "strip_placeholders": true, "file_name": "Ananya Sharma"}
+```
+
+| Field | Meaning |
+|---|---|
+| `format` | `docx`, `pdf` or `txt` |
+| `strip_placeholders` | Default `true` — removes the optional `[ … ]` prompts |
+
+**`< … >` blanks are never stripped.** They are content the candidate must
+supply, and deleting them would turn a template into a claim, so the export
+returns `422` listing what is still unfilled. Send `strip_placeholders: false`
+to download the document with every marker intact.
+| `file_name` | Sanitised; the extension is added automatically |
+
+Returns the file with the matching `Content-Type` and a
+`Content-Disposition: attachment` header (exposed to cross-origin callers).
+DOCX and PDF are deliberately ATS-plain: single column, black text, no tables,
+images or colour.
 
 ## Projects
 
@@ -304,7 +455,8 @@ Validation failures add a `problems` array with `field` and `message` per issue.
 | 404 | Unknown company, role, resume or analysis |
 | 413 | Upload exceeds `MAX_UPLOAD_MB` |
 | 415 | Unsupported file type |
-| 422 | Validation failed, or the file contained no extractable text |
+| 422 | Validation failed, the file contained no extractable text, or a claimed skill is not a gap |
+| 422 `code: non_tech_jd` | The pasted posting is not a technical role |
 | 500 | Unexpected error (`hint` carries the detail when `DEBUG=true`) |
 
 Every response carries an `X-Process-Time-Ms` header.

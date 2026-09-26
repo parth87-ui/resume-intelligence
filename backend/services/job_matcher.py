@@ -28,6 +28,17 @@ from services.knowledge_base import JobRequirement, KnowledgeBase, get_knowledge
 from services.resume_parser import ParsedResume
 from services.skill_extractor import ExtractedSkill, get_skill_extractor
 
+# Degree fields that count as technical. Shared by the education component and
+# the section scorer so the two can never disagree about the same resume.
+# "technolog" matters more than it looks: B.Tech and "Information Technology"
+# both reduce to it, and treating those as non-technical penalises a large
+# share of Indian engineering graduates.
+TECHNICAL_FIELD_TERMS: tuple[str, ...] = (
+    "computer", "software", "data", "information", "electronic", "electrical",
+    "statistic", "mathemat", "artificial", "machine", "technolog", "engineer",
+    "comput", "science", "ai", "ml", "cyber", "network",
+)
+
 CREDIT_APPLIED = 1.0
 CREDIT_DECLARED = 0.8
 CREDIT_RELATED = 0.35
@@ -379,8 +390,7 @@ class JobMatcher:
             if any(k in degrees for k in ("master", "m.tech", "msc", "phd", "mba", "m.sc")):
                 score += 12
                 notes.append("postgraduate qualification")
-            relevant_terms = ("computer", "software", "data", "information", "electronic",
-                              "electrical", "statistic", "mathemat", "artificial", "machine")
+            relevant_terms = TECHNICAL_FIELD_TERMS
             if any(term in fields for term in relevant_terms):
                 score += 18
                 notes.append("field of study is relevant to the target role")

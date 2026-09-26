@@ -49,6 +49,8 @@ export const dashboardPage = {
 
     return `
     <div class="page fade-up">
+      ${fitCard(analysis.fit_assessment)}
+
       <!-- ---------------------------------------------------- overview -- -->
       <div class="grid cols-4">
         ${statCard('Candidate', esc(overview.contact.name || 'Not detected'),
@@ -478,8 +480,73 @@ function statCard(label, value, hint, isText = false) {
 function markFor(type) {
   return {
     score: '◎', gap: '△', strength: '★', 'quick-win': '⚡',
-    ats: '⚑', company: '◈', section: '¶',
+    ats: '⚑', company: '◈', section: '¶', fit: '◆',
   }[type] || '•';
+}
+
+/**
+ * The apply/don't-apply verdict, above everything else.
+ *
+ * Rendered only when the payload carries one, so an analysis stored before
+ * this feature existed still opens without a blank card.
+ */
+function fitCard(fit) {
+  if (!fit) return '';
+  const tone = { 'Strong fit': 'ok', 'Good fit': 'ok', 'Partial fit': 'warn', 'Not a fit': 'bad' }[
+    fit.verdict
+  ] || 'mute';
+
+  return `
+  <div class="card pad-lg fit-card ${esc(tone)}">
+    <div class="fit-head">
+      <div>
+        <div class="verdict">${esc(fit.verdict)}</div>
+        <p class="headline">${esc(fit.headline)}</p>
+      </div>
+      <div class="fit-meta">
+        <span class="chip ${esc(tone)}">${fit.required_coverage.toFixed(0)}% of required skills</span>
+        <span class="chip mute">${fit.confidence.toFixed(0)}% confidence</span>
+      </div>
+    </div>
+
+    <div class="fit-checks">
+      ${fit.checks
+        .map(
+          (check) => `
+        <div class="ats-check">
+          <div class="status ${esc(check.status)}">${
+            check.status === 'pass' ? '✓' : check.status === 'warn' ? '!' : '✗'
+          }</div>
+          <div class="body">
+            <div class="label">${esc(check.label)}
+              ${check.knockout ? '<span class="knockout">knockout</span>' : ''}</div>
+            <div class="msg">${esc(check.detail)}</div>
+          </div>
+        </div>`
+        )
+        .join('')}
+    </div>
+
+    ${
+      fit.blocking_skills.length
+        ? `<div class="fit-blocking">
+             <div class="tiny faint">BLOCKING SKILLS</div>
+             <div class="chip-row">${fit.blocking_skills
+               .map((s) => `<span class="chip bad">${esc(s)}</span>`)
+               .join('')}</div>
+           </div>`
+        : ''
+    }
+
+    <div class="fit-next">
+      <span class="small">${esc(fit.next_step)}</span>
+    </div>
+
+    <div class="row wrap" style="gap:10px;margin-top:14px">
+      <button class="btn primary" data-route="builder">Fix my resume for this job →</button>
+      <button class="btn ghost" data-route="gaps">See the full gap analysis</button>
+    </div>
+  </div>`;
 }
 
 function scoreTone(score) {

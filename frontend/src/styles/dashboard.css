@@ -347,3 +347,118 @@
 .readiness .step-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: baseline; }
 .readiness .step-row .k { font-size: 0.83rem; color: var(--text-dim); }
 .readiness .step-row .v { font-weight: 640; font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------- fit verdict -- */
+
+.fit-card { border-left: 3px solid var(--neutral); }
+.fit-card.ok { border-left-color: var(--success); }
+.fit-card.warn { border-left-color: var(--warn); }
+.fit-card.bad { border-left-color: var(--danger); }
+.fit-head { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: flex-start; }
+.fit-head .verdict { font-size: 1.5rem; font-weight: 680; letter-spacing: -0.01em; }
+.fit-card.ok .fit-head .verdict { color: var(--ok-text); }
+.fit-card.warn .fit-head .verdict { color: var(--warn-text); }
+.fit-card.bad .fit-head .verdict { color: var(--bad-text); }
+.fit-head .headline { font-size: 0.9rem; color: var(--text-dim); margin-top: 4px; max-width: 62ch; }
+.fit-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.fit-checks { margin-top: 16px; }
+.fit-checks .knockout {
+  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--bad-text); background: var(--danger-soft); padding: 1px 6px; border-radius: 5px;
+}
+.fit-blocking { margin-top: 14px; display: flex; flex-direction: column; gap: 7px; }
+.fit-next {
+  margin-top: 14px; padding: 12px; border-radius: 11px;
+  background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+/* ---------------------------------------------------- resume builder -- */
+
+.detail-grid .field { margin-bottom: 0; }
+.missing-flag {
+  font-size: 0.64rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--warn-text); background: var(--warn-soft); padding: 1px 6px; border-radius: 5px; margin-left: 6px;
+}
+
+.skill-picker { display: flex; flex-direction: column; }
+.skill-picker.dimmed { opacity: 0.5; pointer-events: none; }
+.skill-pick {
+  display: flex; gap: 16px; align-items: flex-start; justify-content: space-between;
+  padding: 12px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
+}
+.skill-pick:last-child { border-bottom: 0; }
+.skill-pick .info { min-width: 0; flex: 1 1 320px; }
+.skill-pick .nm { font-size: 0.875rem; font-weight: 560; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.skill-pick .why { font-size: 0.775rem; color: var(--text-faint); margin-top: 3px; }
+.skill-pick.claimed { background: var(--success-soft); }
+.skill-pick.learning { background: var(--warn-soft); }
+.skill-pick .picks { display: flex; gap: 14px; flex: 0 0 auto; }
+.tickbox { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 0.8rem; color: var(--text-dim); }
+.tickbox input { cursor: pointer; }
+
+.mode-options { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.mode-option {
+  display: flex; gap: 11px; padding: 14px; border-radius: var(--r);
+  border: 1px solid var(--border); background: var(--raised); cursor: pointer;
+  align-items: flex-start; transition: border-color var(--fast), background var(--fast);
+}
+.mode-option:hover { border-color: var(--border-strong); }
+.mode-option.selected { border-color: var(--accent); background: var(--accent-soft); }
+.mode-option strong { font-size: 0.885rem; margin-right: 7px; }
+.mode-option p { margin-top: 4px; }
+.mode-option input { margin-top: 3px; cursor: pointer; }
+
+.auto-warning {
+  display: flex; gap: 11px; margin-top: 14px; padding: 13px; border-radius: var(--r);
+  background: var(--warn-soft); border: 1px solid color-mix(in srgb, var(--warn) 34%, transparent);
+  font-size: 0.82rem; color: var(--text-dim);
+}
+.auto-warning strong { color: var(--warn-text); }
+
+.build-summary {
+  display: grid; gap: 12px; margin-top: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.build-summary .stat {
+  padding: 12px; border-radius: var(--r-sm); background: var(--raised); border: 1px solid var(--border);
+}
+.build-summary .stat .k { display: block; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); }
+.build-summary .stat .v { display: block; font-size: 0.95rem; margin-top: 4px; }
+
+.missing-details { margin-top: 14px; display: flex; flex-direction: column; gap: 7px; }
+.changes { margin-top: 18px; }
+.change-row { display: flex; gap: 11px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--border); }
+.change-row:last-child { border-bottom: 0; }
+.textarea.mono { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: 0.79rem; line-height: 1.5; }
+
+.jd-error {
+  display: flex; gap: 9px; align-items: flex-start; margin-top: 10px; padding: 11px 13px;
+  border-radius: var(--r); background: var(--danger-soft);
+  border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent);
+  font-size: 0.82rem; color: var(--text-dim);
+}
+.jd-error span[aria-hidden] { color: var(--bad-text); }
+
+.rec-projects { margin-top: 18px; }
+.rec-project {
+  padding: 13px; border-radius: var(--r); background: var(--raised);
+  border: 1px solid var(--border); margin-bottom: 10px;
+}
+.rec-project .head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 5px; }
+.rec-project .template {
+  margin-top: 9px; padding: 10px; border-radius: var(--r-sm); background: var(--sunken-2);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.74rem; line-height: 1.5; color: var(--text-dim);
+}
+
+.project-pick {
+  display: flex; gap: 16px; align-items: flex-start; justify-content: space-between;
+  padding: 13px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap;
+}
+.project-pick:last-child { border-bottom: 0; }
+.project-pick .info { min-width: 0; flex: 1 1 340px; }
+.project-pick .nm { font-size: 0.875rem; font-weight: 560; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.project-pick .why { font-size: 0.78rem; color: var(--text-faint); margin-top: 4px; }
+.project-pick .picks { display: flex; gap: 14px; flex: 0 0 auto; }
+.project-pick.claimed { background: var(--success-soft); }
+.project-pick.learning { background: var(--warn-soft); }

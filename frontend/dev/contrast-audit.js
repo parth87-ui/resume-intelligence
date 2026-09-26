@@ -17,6 +17,13 @@
  * Elements sitting on a CSS gradient (the brand mark, the primary button) are
  * skipped: their effective background cannot be read from `backgroundColor`,
  * and reporting them produces false failures.
+ *
+ * IMPORTANT - reload between themes. If you switch theme with the in-app toggle
+ * and audit immediately, `getComputedStyle` still reports the previous
+ * background for already-painted elements, so the new palette's text is
+ * composited against the old surface and dozens of false failures appear. Set
+ * the theme (or `localStorage['resume-intelligence.theme']`), reload, then run.
+ * `runBothThemes()` has the same caveat: trust it only on a freshly loaded page.
  */
 
 (function () {

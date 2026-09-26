@@ -143,6 +143,58 @@ class JobRequirement:
         }
 
 
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "JobRequirement":
+        """Rebuild a requirement from its ``to_dict()`` form.
+
+        Needed because a job-description target exists only inside the stored
+        analysis payload - there is no dataset to recompose it from. The resume
+        builder re-scores its output against the *same* requirement, so this is
+        what makes a before/after comparison meaningful for pasted postings.
+        """
+        def skills_of(key: str, tier: str) -> list[RequiredSkill]:
+            return [
+                RequiredSkill(
+                    skill=item["skill"],
+                    importance=float(item.get("importance", 0.5)),
+                    tier=tier,
+                    category=item.get("category", ""),
+                    source=item.get("source", "stored"),
+                )
+                for item in data.get(key, [])
+            ]
+
+        company = data.get("company") or {}
+        role = data.get("role") or {}
+        level = data.get("level") or {}
+        return cls(
+            company_id=company.get("id", "custom"),
+            company_name=company.get("name", "Target company"),
+            role_id=role.get("id", "custom"),
+            role_title=role.get("title", "Target role"),
+            level_id=level.get("id", "mid"),
+            level_title=level.get("title", "Mid Level"),
+            summary=data.get("summary", ""),
+            skills=(
+                skills_of("required_skills", "required")
+                + skills_of("preferred_skills", "preferred")
+                + skills_of("optional_skills", "optional")
+            ),
+            keywords=list(data.get("keywords", [])),
+            responsibilities=list(data.get("responsibilities", [])),
+            soft_skills=list(data.get("soft_skills", [])),
+            values=list(data.get("values", [])),
+            hiring_signals=list(data.get("hiring_signals", [])),
+            screen_notes=data.get("screen_notes", ""),
+            interview_focus=list(data.get("interview_focus", [])),
+            expectations=list(data.get("expectations", [])),
+            expected_years=float(data.get("expected_years", 2) or 0),
+            weights=dict(data.get("weights", {})),
+            radar_axes=list(data.get("radar_axes", [])),
+            curated=bool(data.get("curated", False)),
+        )
+
+
 # ---------------------------------------------------------------------------
 # Knowledge base
 # ---------------------------------------------------------------------------

@@ -30,7 +30,7 @@ from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
 from fastapi.responses import JSONResponse  # noqa: E402
 from fastapi.staticfiles import StaticFiles  # noqa: E402
 
-from api.routes import analysis, catalog, chat, resume  # noqa: E402
+from api.routes import analysis, builder, catalog, chat, resume  # noqa: E402
 from config import FRONTEND_DIR, settings  # noqa: E402
 from db.database import init_db  # noqa: E402
 from ml.nlp_pipeline import get_pipeline  # noqa: E402
@@ -149,6 +149,7 @@ async def unhandled_error_handler(request: Request, exc: Exception):  # pragma: 
 app.include_router(catalog.router)
 app.include_router(resume.router)
 app.include_router(analysis.router)
+app.include_router(builder.router)
 app.include_router(chat.router)
 
 
